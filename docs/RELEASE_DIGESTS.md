@@ -1,43 +1,40 @@
-# Release digests — v0.1.0 (path-clean rebuild)
+# Release digests — v0.1.0 (path-clean)
 
-## Source freeze (clean history)
+## Source freeze
 
 | Artifact | Value |
 |----------|--------|
-| Git tag | `v0.1.0` (moved to clean-history tip after orphan) |
-| Git commit (tag target) | b4a269f15f06d4a93843ba3f9bafcc16d5e44467 |
+| Git tag | `v0.1.0` |
+| Git commit (tag target) | `7b022e4d52be317c4a0afb59bce3d28d7e2255ba` |
 | `Cargo.lock` SHA-256 | `491077fd3424d63c658c0a728df520dcba9c895c96c2ecb014a603868467efe8` |
 | Workspace version | `0.1.0` |
-| Toolchain | `1.91.1` (`rust-toolchain.toml`) |
+| Toolchain | `1.91.1` |
 
-## Prebuilt CLI binaries (macOS; digests unchanged from prior build)
+## Prebuilt CLI binaries (path-remapped + stripped)
 
 | Artifact | SHA-256 |
 |----------|---------|
-| `beavermath-0.1.0-aarch64-apple-darwin.tar.gz` | `c3e91374153718b5f13944ebfc04121330d3e7d2e1a5470fa85ed0a520706c29` |
-| `beavermath-0.1.0-x86_64-apple-darwin.tar.gz` | `87c2c4986b8039c9bd2523aff09e9472156ab063752a1086310269f188ebfe9d` |
-| Unpacked binary aarch64-apple-darwin | `51b6ff99bac2c25cb46f79d4dacd14ac843dca4374423b49a3de309607cf2252` |
-| Unpacked binary x86_64-apple-darwin | `c5c5c15a0b7da6a411da0466bc61c95d35b14bb4efae953e307c68f680a3ec63` |
+| `beavermath-0.1.0-aarch64-apple-darwin.tar.gz` | `a6dc221a0d8de5183ebc91c92addcbe9d841bdf8f9abb83ec7a042067efc0e91` |
+| `beavermath-0.1.0-x86_64-apple-darwin.tar.gz` | `f1993438aee9ed72c10a8cf5aa54ce1ab2ee51d65d6501300b6965fffc1edb33` |
+| Unpacked binary aarch64-apple-darwin | `1091d0f74588d7b10eda14355a6826b28de8ce5f100c748ea614a2b1082e4568` |
+| Unpacked binary x86_64-apple-darwin | `1d8111970f382ded08d7cc040383dbac1c7d7643ac34bda5d86b22b8997d1288` |
 
-Archive layout: single executable named `beavermath` at archive root.
+Built with `--remap-path-prefix` (repo → `/src/beavermath`, cargo home → `/cargo`) and strip. `strings` scan: no `/Users/` and no lab Desktop roots.
 
-## SBOM (path-scrubbed)
+## SBOM
 
 | Artifact | SHA-256 |
 |----------|---------|
 | `docs/release/sbom-beavermath-cli.cdx.json` | `c8de49cdb45569ee0af21c884a529f670ce348e9dab63e81ed0e09d5bbec9a65` |
 
-SBOM package refs use generic `pkg:cargo/...` style identifiers; absolute host paths are not embedded.
+Host absolute paths scrubbed from package refs.
 
 ## Path hygiene
 
-- Tip and all commits on the public-bound branch must contain **zero** lab absolute paths (`/Users/...` install roots).
-- Dirty pre-clean history retained only on private ref `backup/pre-clean-history` (not pushed for public consumption).
-
-## Linux / Windows
-
-Not produced in this cut.
+- `origin/main` history: zero lab absolute paths
+- Release assets (binaries + SBOM): verified by download + strings/rg
+- Local backup ref `backup/pre-clean-history` only (not pushed)
 
 ## crates.io
 
-Workspace crates remain `publish = false` for this cut.
+`publish = false`
