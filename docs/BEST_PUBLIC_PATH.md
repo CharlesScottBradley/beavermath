@@ -57,6 +57,9 @@ crates.io, full harness body paint, Sixel/probe, and WCAG-complete math a11y are
 - Post-public clean-machine smoke recorded
 - Security reporting path live
 - Asset re-download scan after GitHub Release upload
+- Branch protection on `main` with required CI status checks
+- Secret scanning + dependency alerts enabled (Dependabot or equivalent)
+- `SECURITY.md` + GitHub Security Advisories path ready at flip
 
 ### 2.2 Strongly preferred (best path does these unless blocked)
 
@@ -64,6 +67,8 @@ crates.io, full harness body paint, Sixel/probe, and WCAG-complete math a11y are
 - GitHub attestation or cosign on archives (same day if easy; else first post-public tag)
 - Second clean-dir smoke before flip (private) plus post-public smoke
 - CI job log linked from freeze notes
+- Tag protection rules for `v*` (prevent force-move of release tags after public)
+- `CONTRIBUTING.md` + issue templates (bug / wrong-math-claim)
 
 ### 2.3 Not required (and not the goal of this cut)
 
@@ -92,7 +97,7 @@ A  Doc ledger repair (kill stale “already public” lies)
 B  Public surface (README + SUPPORT + CHANGELOG + SECURITY)
 C  Code quality bar (panic polish, newline, small invariants)
 D  Evidence bar (tests, deny, multi-arch assets, path/asset scans, CI on freeze SHA)
-E  Private freeze v0.1.1 (binaries, SBOM, digests, tag)
+E  Private freeze v0.1.1 (binaries, SBOM, digests, tag, repo governance)
 F  Flip (approve only)
 G  Post-public hardening
 H  Deferred tracks (H harness, 12R residual, 13 protocols)
@@ -268,7 +273,21 @@ Tag target **is** the freeze commit. Do not move tag after binary build without 
 | README still says private candidate | yes |
 | No secrets in tree | yes |
 
-**Exit:** maintainer can say “this SHA is the public candidate” without asterisks.
+### E7. Repo governance and security gate (pre-flip, still private)
+
+Configure **before** visibility flips so public day is not a naked repo.
+
+| # | Control | Done when |
+|---|---------|-----------|
+| E7.1 | Branch protection on `main` | PR or direct-push rules set; **required status check** = `ci` / `test` job from `.github/workflows/ci.yml` |
+| E7.2 | Tag hygiene | Document: do not force-move `v0.1.1` after public; enable tag protection if plan allows |
+| E7.3 | Secret scanning | GitHub secret scanning on (and push protection if available on the account/plan) |
+| E7.4 | Dependency alerts | Dependabot alerts on; add `.github/dependabot.yml` for `cargo` + `github-actions` (weekly) |
+| E7.5 | Security advisories | Private vulnerability reporting enabled **at flip**; `SECURITY.md` points at it |
+| E7.6 | Community files | `CONTRIBUTING.md` (how to build, test, claim discipline); issue templates: bug, dishonest-claim/docs |
+| E7.7 | Actions pin note | Prefer SHA-pinned actions when touching workflows; at least track Node 20 deprecation |
+
+**Exit E6+E7:** freeze SHA is the public candidate **and** the GitHub project is operable as a public open-source repo on day one (checks, alerts, reporting, contribution path).
 
 ---
 
@@ -276,17 +295,19 @@ Tag target **is** the freeze commit. Do not move tag after binary build without 
 
 Order is fixed.
 
-1. Re-run E6 red team on the freeze SHA.  
-2. `git push origin main` and `git push origin v0.1.1`.  
-3. Create GitHub Release `v0.1.1` with assets + digests; **re-download** and re-scan.  
-4. Set visibility public (`gh repo edit ... --visibility public --accept-visibility-change-consequences`).  
-5. Enable Security Advisories; fix SECURITY.md if needed.  
-6. README status line → public 0.1.1 (follow-up commit OK).  
-7. Clean-machine smoke (D5 + clone via HTTPS).  
-8. Record smoke in `docs/PUBLIC_SMOKE.md` or PHASE_GATES.  
-9. **Do not** crates.io same day unless separate approve.
+1. Re-run E6 red team on the freeze SHA.
+2. Confirm E7 governance controls are configured (branch protection can apply while private).
+3. `git push origin main` and `git push origin v0.1.1`.
+4. Create GitHub Release `v0.1.1` with assets + digests; **re-download** and re-scan.
+5. Set visibility public (`gh repo edit ... --visibility public --accept-visibility-change-consequences`).
+6. Enable Security Advisories / private vulnerability reporting; fix `SECURITY.md` if needed.
+7. README status line to public 0.1.1 (follow-up commit OK).
+8. Clean-machine smoke (D5 + clone via HTTPS).
+9. Record smoke in `docs/PUBLIC_SMOKE.md` or PHASE_GATES.
+10. Verify branch protection still requires CI on `main` after public.
+11. **Do not** crates.io same day unless separate approve.
 
-**Abort conditions:** any path hit in assets; CI red; digest mismatch; accidental claim of full in-chat.
+**Abort conditions:** any path hit in assets; CI red; digest mismatch; accidental claim of full in-chat; missing security reporting path.
 
 ---
 
@@ -294,11 +315,12 @@ Order is fixed.
 
 | # | Task |
 |---|------|
-| G1 | Watch CI on public forks/PRs policy (issues, discussions optional) |
-| G2 | Pin or bump Actions if Node 20 deprecation warnings become failures |
+| G1 | Confirm Dependabot PRs policy (auto-merge off; CI required) |
+| G2 | Pin or bump Actions if Node 20 deprecation becomes failure |
 | G3 | Linux binary release if not in E (`v0.1.2` OK) |
-| G4 | Dependabot or scheduled `cargo deny` (optional) |
+| G4 | Attestations/cosign if deferred from E/F |
 | G5 | Close stale private-only wording in docs if any remain |
+| G6 | CODEOWNERS optional; triage labels for bugs vs claim disputes |
 
 ---
 
