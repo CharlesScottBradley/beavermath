@@ -90,6 +90,7 @@ Terminal graphics protocols are documented by [Kitty](https://sw.kovidgoyal.net/
 - [Phase 12 publication](docs/PHASE12_PUBLICATION.md), candidate freeze, digests, public flip checklist.
 - [Publish roadmap](docs/PUBLISH_ROADMAP.md), ordered R1/R2/R3 stages, sanitize gates, flip sequence.
 - [Go-public plan](docs/GO_PUBLIC_PLAN.md), freeze, README target, flip sequence for public 0.1.1.
+- [Best public path](docs/BEST_PUBLIC_PATH.md), comprehensive quality path (docs, evidence, freeze, flip, deferred tracks).
 - [Changelog](CHANGELOG.md) · [Security](SECURITY.md) · [Support](SUPPORT.md) · [Third-party](THIRD_PARTY.md)
 
 ## Install (0.1.0)
