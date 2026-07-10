@@ -36,7 +36,7 @@ OMP O2 is automatic in-session preview (honest partial). OpenCode interactive pa
 |------|--------|
 | Grok stock TUI | blocked (closed binary); `grok-session` VIEWPORT interim |
 | Claude Code / Codex | oneshot-oriented |
-| Core ROADMAP 0–7 | pass (implementation present) |
+| Core ROADMAP 0-7 | pass (implementation present) |
 | Phase 13 | **scoped, not started** ([PHASE13_SCOPE.md](PHASE13_SCOPE.md)); Track H harness bar is separate |
 
 ## Critical invariants

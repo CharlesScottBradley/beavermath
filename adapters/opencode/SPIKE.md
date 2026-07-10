@@ -16,7 +16,7 @@ export type Plugin = (input: PluginInput, options?) => Promise<Hooks>;
 
 | Hook | Role | Mutates store? |
 |------|------|----------------|
-| `experimental.text.complete` | Fires when a text part completes; `output.text` can be modified | **Likely yes** — treat as unsafe for source immutability by default |
+| `experimental.text.complete` | Fires when a text part completes; `output.text` can be modified | **Likely yes** - treat as unsafe for source immutability by default |
 | `experimental.chat.messages.transform` | Transform messages for LLM | Must not inject semantic (would poison context) |
 | `event` | Generic bus | Observation only |
 | `chat.message` | User message path | Not assistant complete |

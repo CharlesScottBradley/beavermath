@@ -188,7 +188,7 @@ H0  Shared contract + hook-process + golden lifecycle fixtures
                                                      │
 H7  True inline presentation hooks (OMP core / Grok pager)
       only if host exposes presentation-only API
-      does NOT block H2–H6 semantic success
+      does NOT block H2-H6 semantic success
 ```
 
 **Ordering rules**
@@ -196,7 +196,7 @@ H7  True inline presentation hooks (OMP core / Grok pager)
 1. **H0 before any live host.** No host-specific schema forks.  
 2. **H1 early** so any CLI that can pipe text works during adapter work.  
 3. **H2 (Grok) and H3 (OMP) may parallelize** after H0; Grok is lab-priority, OMP is PRD-priority. If forced to serialize: **H2 then H3** for this lab.  
-4. **H4–H6 after H0**; prefer after at least one of H2/H3 is green so lifecycle fixtures are battle-tested.  
+4. **H4-H6 after H0**; prefer after at least one of H2/H3 is green so lifecycle fixtures are battle-tested.  
 5. **H7 never blocks** “readable math in chat” claims that only need semantic overlay/sidecar.
 
 **Does not depend on:** Phase 12 public publish, Phase 13 probing/Sixel, MCP server (unless a host forces it).
@@ -215,7 +215,7 @@ Grok Build renders markdown in the TUI. It does **not** call BeaverMath on assis
 
 #### Mechanism ladder (implement in order; stop at first viable product bar)
 
-**G2a — Turn-end hook + sidecar preview (minimum viable product)**
+**G2a - Turn-end hook + sidecar preview (minimum viable product)**
 
 | Item | Detail |
 |------|--------|
@@ -228,7 +228,7 @@ Grok Build renders markdown in the TUI. It does **not** call BeaverMath on assis
 
 **Exit for G2a:** completing a math-heavy turn produces a preview file whose semantic text matches `beavermath filter` on the same source; exact source file retained.
 
-**G2b — ACP / headless consumer (structured client)**
+**G2b - ACP / headless consumer (structured client)**
 
 | Item | Detail |
 |------|--------|
@@ -237,7 +237,7 @@ Grok Build renders markdown in the TUI. It does **not** call BeaverMath on assis
 | Output | Client-side presentation panel or filtered scrollback in a **BeaverMath-aware ACP client** |
 | Use | Editors / custom clients; not the default TUI unless Grok embeds it |
 
-**G2c — Presentation-only TUI integration (true chat UX) — PRODUCT BAR**
+**G2c - Presentation-only TUI integration (true chat UX) - PRODUCT BAR**
 
 | Item | Detail |
 |------|--------|
@@ -307,7 +307,7 @@ This is the compatibility floor. Every host adapter must beat this floor for int
 
 ## 7. Phased delivery
 
-### H0 — Shared contract freeze
+### H0 - Shared contract freeze
 
 **Purpose:** one spine, no host forks.
 
@@ -326,11 +326,11 @@ This is the compatibility floor. Every host adapter must beat this floor for int
 - Machine stdout of hook path: zero ESC/CSI/OSC  
 - Same fixtures pass for all adapter wrappers in-tree  
 
-**PRD:** BM-020, BM-025, FR-068–072, FR-095–096
+**PRD:** BM-020, BM-025, FR-068-072, FR-095-096
 
 ---
 
-### H1 — Universal oneshot polish
+### H1 - Universal oneshot polish
 
 **Purpose:** every harness can pipe.
 
@@ -347,11 +347,11 @@ This is the compatibility floor. Every host adapter must beat this floor for int
 - Dual-run determinism on semantic filter  
 - Exit status preserved in documented wrapper examples  
 
-**PRD:** BM-011, BM-034, BM-038, FR-059–061
+**PRD:** BM-011, BM-034, BM-038, FR-059-061
 
 ---
 
-### H2 — Grok Build live (lab first-class)
+### H2 - Grok Build live (lab first-class)
 
 **Purpose:** derivations in Grok Build yield readable math without manual CLI.
 
@@ -378,7 +378,7 @@ This is the compatibility floor. Every host adapter must beat this floor for int
 
 ---
 
-### H3 — OMP live extension
+### H3 - OMP live extension
 
 **Purpose:** PRD BM-021 for real.
 
@@ -398,7 +398,7 @@ This is the compatibility floor. Every host adapter must beat this floor for int
 
 ---
 
-### H4 — Codex live
+### H4 - Codex live
 
 **Work**
 
@@ -410,7 +410,7 @@ This is the compatibility floor. Every host adapter must beat this floor for int
 
 ---
 
-### H5 — Claude Code live
+### H5 - Claude Code live
 
 **Work**
 
@@ -422,7 +422,7 @@ This is the compatibility floor. Every host adapter must beat this floor for int
 
 ---
 
-### H6 — OpenCode live
+### H6 - OpenCode live
 
 **Work**
 
@@ -434,7 +434,7 @@ This is the compatibility floor. Every host adapter must beat this floor for int
 
 ---
 
-### H7 — True inline presentation (optional, host-dependent)
+### H7 - True inline presentation (optional, host-dependent)
 
 **Purpose:** replace sidecar/supplemental with in-transcript display overlays.
 
@@ -447,7 +447,7 @@ This is the compatibility floor. Every host adapter must beat this floor for int
 
 **Exit gates:** BM-022 (OMP); Grok equivalent documented  
 
-**Non-blocking:** H2–H6 may claim “chat-readable math” on semantic/sidecar alone.
+**Non-blocking:** H2-H6 may claim “chat-readable math” on semantic/sidecar alone.
 
 ---
 
@@ -534,7 +534,7 @@ Track is **complete** when:
 
 1. H0 + H1 green.  
 2. **At least H2 (Grok) live** at G2a or better, with recorded spike.  
-3. **At least one of H3–H6 live** beyond fixtures (prefer H3 OMP for public PRD alignment).  
+3. **At least one of H3-H6 live** beyond fixtures (prefer H3 OMP for public PRD alignment).  
 4. Remaining hosts either live or documented as “oneshot-only” with recipes.  
 5. `docs/PHASE_GATES.md` distinguishes **fixture** vs **live** for each host.  
 6. No v1 claim of true inline unless H7 evidence exists.  
@@ -575,10 +575,10 @@ After sprint: either G2a sidecar is usable for daily lab work, or SPIKE proves w
 |---------|------------|
 | Phase 8 | H3 live (replaces fixture-only claim) |
 | Phase 9 | H7 OMP slice |
-| Phase 11 | H4–H6 live |
+| Phase 11 | H4-H6 live |
 | New | H2 Grok (lab) + H0/H1 spine |
 | Phase 7 | Unchanged consumer for TTY pixels |
-| Phase 12–13 | Independent; do not wait |
+| Phase 12-13 | Independent; do not wait |
 
 ---
 

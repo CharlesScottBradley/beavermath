@@ -103,7 +103,7 @@ checksum = "72b3254f16251a8381aa12e40e3c4d2f0199f8c6508fbecb9d91f575e0fbb8c6"
 
 [[package]]
 name = "beavermath-adapter"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "beavermath-core",
  "beavermath-terminal",
@@ -117,7 +117,7 @@ dependencies = [
 
 [[package]]
 name = "beavermath-cli"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "beavermath-adapter",
  "beavermath-core",
@@ -132,7 +132,7 @@ dependencies = [
 
 [[package]]
 name = "beavermath-core"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "hex",
  "serde",
@@ -144,7 +144,7 @@ dependencies = [
 
 [[package]]
 name = "beavermath-render"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "beavermath-core",
  "hex",
@@ -162,7 +162,7 @@ dependencies = [
 
 [[package]]
 name = "beavermath-terminal"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "base64",
  "beavermath-core",

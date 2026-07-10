@@ -216,7 +216,7 @@ Single status table only (O2 partial already). No second conflicting story in SP
 | D9 | (Stretch) Linux release binary | `release-prep` or manual `x86_64-unknown-linux-gnu` build + strings scan |
 | D10 | (Stretch) Second clean-dir smoke | clone into `/tmp`, install, run D5 |
 
-**Exit:** checklist D1–D8 recorded (comment in PHASE_GATES or PUBLIC_SMOKE draft). D9–D10 recommended for “best,” not optional-sloppy: do D10 at least once private; D9 if time.
+**Exit:** checklist D1-D8 recorded (comment in PHASE_GATES or PUBLIC_SMOKE draft). D9-D10 recommended for “best,” not optional-sloppy: do D10 at least once private; D9 if time.
 
 ---
 
@@ -378,7 +378,7 @@ Not calendar-forced; dependency order.
 | Phase | Contents | Stop condition |
 |-------|----------|----------------|
 | Day 1 | Wave A + B | README/SUPPORT/CHANGELOG honest; ledger consistent |
-| Day 2 | Wave C + D1–D8 | local + CI green; smoke scripted |
+| Day 2 | Wave C + D1-D8 | local + CI green; smoke scripted |
 | Day 3 | Wave E | tag v0.1.1; assets; red team pass |
 | Day 4 | Pause for **approve public** | human gate |
 | Day 4/5 | Wave F | public + smoke recorded |

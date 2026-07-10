@@ -5,7 +5,7 @@
 **Canonical freeze / flip checklist:** [PHASE12_PUBLICATION.md](PHASE12_PUBLICATION.md)  
 **Digest ledger:** [RELEASE_DIGESTS.md](RELEASE_DIGESTS.md)  
 **Phase ledger:** [PHASE_GATES.md](PHASE_GATES.md)  
-**Contract sources:** [ROADMAP.md](../ROADMAP.md) Phase 10–12, [PRD](../tasks/prd-beavermath.md) BM-024 / FR-098–100 / NFR-010–011 / NFR-019
+**Contract sources:** [ROADMAP.md](../ROADMAP.md) Phase 10-12, [PRD](../tasks/prd-beavermath.md) BM-024 / FR-098-100 / NFR-010-011 / NFR-019
 
 ---
 
@@ -17,9 +17,9 @@ Do not collapse these into one button. Each has its own gates.
 
 | Release | What the world gets | Hard gates |
 |---------|---------------------|------------|
-| **R1 — GitHub source public** | Readable repo, issues, docs, install-from-source | Full-history path+secret scan clean (or clean-tree import); tip CI green; honest claims |
-| **R2 — Binary / archive release** | Tagged GitHub Release + multi-arch tarballs + checksums + SBOM + attestations | Reproducible builds, clean-machine smoke, FR-098/099 |
-| **R3 — crates.io (optional first wave)** | `publish = true` packages | Ownership, API freeze, no accidental private deps, intentional order |
+| **R1 - GitHub source public** | Readable repo, issues, docs, install-from-source | Full-history path+secret scan clean (or clean-tree import); tip CI green; honest claims |
+| **R2 - Binary / archive release** | Tagged GitHub Release + multi-arch tarballs + checksums + SBOM + attestations | Reproducible builds, clean-machine smoke, FR-098/099 |
+| **R3 - crates.io (optional first wave)** | `publish = true` packages | Ownership, API freeze, no accidental private deps, intentional order |
 
 Harness adapters (OMP / OpenCode / Grok / Claude / Codex) are **not** a fourth registry release. They ship as **in-tree recipes** under R1/R2 with honest partial status. Full in-chat body paint remains host-API blocked where already documented.
 
@@ -57,7 +57,7 @@ Recorded from workspace audit + Phase 12 freeze docs (re-check before acting).
 | Workspace version | `0.1.0`, all crates `publish = false` | R3 blocked by design |
 | Toolchain | `rust-toolchain.toml` → `1.91.1` | Must match CI and release builds |
 | Freeze doc candidate | `5d86818…` ([PHASE12_PUBLICATION.md](PHASE12_PUBLICATION.md)) | Digest ledger points here |
-| Freeze-doc commit itself | later commit on `main` that *records* that freeze | **HEAD may be ahead of freeze SHA** — re-freeze before flip (§2.0) |
+| Freeze-doc commit itself | later commit on `main` that *records* that freeze | **HEAD may be ahead of freeze SHA** - re-freeze before flip (§2.0) |
 | Tests | `cargo test --locked --workspace` green on freeze host | Necessary, not sufficient |
 | Clippy / fmt | **red** under CI’s `-D warnings` / `fmt --check` | R1 CI credibility blocker |
 | Absolute path leaks | still present in adapters install/hooks/fixtures | R1 privacy/brand blocker |
@@ -69,7 +69,7 @@ Recorded from workspace audit + Phase 12 freeze docs (re-check before acting).
 
 ---
 
-## 2. Stage A — Make the tree publicly defensible (before any push of a “release branch” content)
+## 2. Stage A - Make the tree publicly defensible (before any push of a “release branch” content)
 
 **Goal:** a stranger can open the tree and not see lab machine paths, private secrets, or “wonky private WIP that pretends to be finished.”  
 **Does not:** open the repo or publish crates.
@@ -81,7 +81,7 @@ Recorded from workspace audit + Phase 12 freeze docs (re-check before acting).
 **Steps:**
 
 1. `git rev-parse HEAD` and compare to freeze table.  
-2. If mismatch: after A1–A4 land, recompute:
+2. If mismatch: after A1-A4 land, recompute:
    - commit SHA  
    - `shasum -a 256 Cargo.lock`  
    - tracked tree content hash (same method used for current freeze)  
@@ -127,7 +127,7 @@ Before visibility changes, do **both**:
    # must return no hits on the history that will become public
    ```
 2. **Remediation (required if scan is dirty):**
-   - **Default when dirty:** **S3 clean public tree** — squash or orphan a sanitized tree on the branch that will be made public (or import into a new public repo), while still private; re-freeze digests on that tree.
+   - **Default when dirty:** **S3 clean public tree** - squash or orphan a sanitized tree on the branch that will be made public (or import into a new public repo), while still private; re-freeze digests on that tree.
    - **Only if scan is already clean:** keep linear history.
    - **Do not** open the repo with known `<HOME>/...` commits still on `main` “to fix later.”
 
@@ -158,7 +158,7 @@ Never rewrite history that is already public. While still private, rewrite/squas
 
 | Host | In-chat | What ships in 0.1.0 | Do not claim |
 |------|---------|---------------------|--------------|
-| CLI `present` / `filter` | N/A | **live** | — |
+| CLI `present` / `filter` | N/A | **live** | - |
 | OMP | partial | O2 custom preview / widget | full assistant-body rewrite (O3) |
 | OpenCode | partial / blocked | plugin side present; oneshot | in-bubble source rewrite |
 | Grok Build | blocked paint | `grok-session` VIEWPORT / sidecar | stock TUI scrollback paint |
@@ -211,7 +211,7 @@ beavermath filter 'The answer is $x^2+y^2=z^2$.'
 
 ---
 
-## 3. Stage B — Private release candidate engineering (R2 prep; still private)
+## 3. Stage B - Private release candidate engineering (R2 prep; still private)
 
 **Goal:** evidence required by Phase 10/12 that single-host `cargo test` does not provide.  
 **Still private.** Prefer completing B before R1 if you want the first public day to include downloadable binaries. **Allowed alternative:** R1 source-only first, then B, then R2 tag (see §5 sequencing options).
@@ -278,7 +278,7 @@ Do not block 0.1.0 on full NFR-008 matrix if CHANGELOG lists it as known limitat
 
 ---
 
-## 4. Stage C — Controlled publication (the only day visibility flips)
+## 4. Stage C - Controlled publication (the only day visibility flips)
 
 Execute only after maintainer **explicit approve public**. Follow PHASE12 §5; expanded here with reasoning.
 
@@ -335,7 +335,7 @@ beavermath present 'From Maxwell, $E=mc^2$.' | tee /tmp/p.json
 
 Record pass/fail in PHASE_GATES or a `docs/PUBLIC_SMOKE.md` log.
 
-### C6. crates.io (R3) — separate decision
+### C6. crates.io (R3) - separate decision
 
 Only if intentionally in scope:
 
@@ -351,7 +351,7 @@ Only if intentionally in scope:
 
 ## 5. Sequencing options (pick one explicitly)
 
-### Option S1 — Source-first public (fastest defensible)
+### Option S1 - Source-first public (fastest defensible)
 
 ```text
 A (sanitize tip + **full-history path clean / S3 if dirty** + CI green + freeze) → C4 R1 public source → B binaries later → R2 tag v0.1.1
@@ -360,7 +360,7 @@ A (sanitize tip + **full-history path clean / S3 if dirty** + CI green + freeze)
 **Pros:** unblocks community read/review; no binary supply-chain rush.  
 **Cons:** first day is clone/build only.
 
-### Option S2 — Full candidate then flip (ROADMAP-faithful)
+### Option S2 - Full candidate then flip (ROADMAP-faithful)
 
 ```text
 A → B (archives+SBOM+sign) → C tag+attach+public same day
@@ -369,7 +369,7 @@ A → B (archives+SBOM+sign) → C tag+attach+public same day
 **Pros:** matches Phase 12 “promote exact candidate.”  
 **Cons:** longer private wait; more moving parts on flip day.
 
-### Option S3 — Clean-tree public import (**required if history path scan is dirty**)
+### Option S3 - Clean-tree public import (**required if history path scan is dirty**)
 
 ```text
 A on sanitized tip → orphan or squash clean tree → replace private main (still private)
@@ -404,7 +404,7 @@ Copied and operationalized from PHASE12 / ROADMAP blockers:
 
 ## 7. Work breakdown (execution checklist)
 
-### Wave 1 — Public-ready tip (R1 prerequisites)
+### Wave 1 - Public-ready tip (R1 prerequisites)
 
 | # | Task | Owner cue | Done when |
 |---|------|-----------|-----------|
@@ -417,7 +417,7 @@ Copied and operationalized from PHASE12 / ROADMAP blockers:
 | 1.6 | Privacy + path history scan A5 | maintainer | written pass note (empty scans) |
 | 1.7 | Re-freeze digests A0 | maintainer | HEAD == freeze SHA |
 
-### Wave 2 — RC evidence (R2 prerequisites)
+### Wave 2 - RC evidence (R2 prerequisites)
 
 | # | Task | Done when |
 |---|------|-----------|
@@ -426,7 +426,7 @@ Copied and operationalized from PHASE12 / ROADMAP blockers:
 | 2.3 | attestations | verify command works |
 | 2.4 | clean VM smoke script | script + log committed or attached |
 
-### Wave 3 — Flip day
+### Wave 3 - Flip day
 
 | # | Task | Done when |
 |---|------|-----------|
@@ -437,7 +437,7 @@ Copied and operationalized from PHASE12 / ROADMAP blockers:
 | 3.5 | Post-public smoke C5 | pass recorded |
 | 3.6 | (optional) crates.io | only if pre-approved |
 
-### Wave 4 — After public (not blockers for 0.1.0)
+### Wave 4 - After public (not blockers for 0.1.0)
 
 - OMP O3 upstream hook proposal  
 - Deepen semantic layer or reword PRD tone to match heuristics  
@@ -470,7 +470,7 @@ Copied and operationalized from PHASE12 / ROADMAP blockers:
 | [SECURITY.md](../SECURITY.md) | Reporting |
 | [SUPPORT.md](../SUPPORT.md) | Install / matrix |
 | [THIRD_PARTY.md](../THIRD_PARTY.md) | Licenses |
-| [ROADMAP.md](../ROADMAP.md) | Phase 10–13 engineering intent |
+| [ROADMAP.md](../ROADMAP.md) | Phase 10-13 engineering intent |
 | [PRD](../tasks/prd-beavermath.md) | Normative requirements |
 
 ---

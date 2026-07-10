@@ -50,8 +50,8 @@ impl AdapterEventV1 {
         }
     }
 
-    pub fn to_machine_json(&self) -> String {
-        serde_json::to_string(self).expect("serialize")
+    pub fn to_machine_json(&self) -> Result<String, String> {
+        serde_json::to_string(self).map_err(|e| e.to_string())
     }
 }
 
@@ -64,7 +64,7 @@ mod tests {
     fn machine_json_has_no_escapes() {
         let mut ev = AdapterEventV1::new(EventKind::MessageEnd, "m1", 1, sha256_hex(b"hello $x$"));
         ev.semantic_preview = Some("hello (x)".into());
-        let s = ev.to_machine_json();
+        let s = ev.to_machine_json().expect("json");
         assert!(!s.as_bytes().contains(&0x1b));
     }
 }

@@ -9,7 +9,7 @@
 
 BeaverMath will provide one source-preserving math-rendering core, one stable CLI, terminal-safe text and direct pixel backends, and structured adapters for OMP, Codex, Claude Code, OpenCode, and **Grok Build** (lab first-class).
 
-**Next implementation track:** live harness compatibility (not fixture-only). See [docs/HARNESS_COMPAT_PLAN.md](docs/HARNESS_COMPAT_PLAN.md) for dependencies, mechanisms, H0–H7 phases, and Grok Build G2a/G2b/G2c ladder.
+**Next implementation track:** live harness compatibility (not fixture-only). See [docs/HARNESS_COMPAT_PLAN.md](docs/HARNESS_COMPAT_PLAN.md) for dependencies, mechanisms, H0-H7 phases, and Grok Build G2a/G2b/G2c ladder.
 
 The model writes ordinary explicit LaTeX. The harness or wrapper renders completed expressions automatically. Exact source remains canonical for model context, session history, copying, replay, and audit. Semantic text is available everywhere. Pixel output is optional and confined to a terminal backend with trusted, transaction-scoped capability information.
 

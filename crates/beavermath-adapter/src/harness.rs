@@ -62,7 +62,7 @@ impl ClaudeAdapter {
     }
 
     /// Hook machine channel must be escape-free.
-    pub fn hook_stdout_json(event: &AdapterEventV1) -> String {
+    pub fn hook_stdout_json(event: &AdapterEventV1) -> Result<String, String> {
         event.to_machine_json()
     }
 }
@@ -125,7 +125,7 @@ mod tests {
     fn claude_hook_stdout_clean() {
         let mut c = ClaudeAdapter::default();
         let ev = c.on_hook_complete("m", "$a$");
-        let out = ClaudeAdapter::hook_stdout_json(&ev);
+        let out = ClaudeAdapter::hook_stdout_json(&ev).expect("json");
         assert!(!out.as_bytes().contains(&0x1b));
     }
 

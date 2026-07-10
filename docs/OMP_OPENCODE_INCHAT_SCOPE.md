@@ -178,7 +178,7 @@ IP0 present API (done)
                       └─► C2 TUI/web re-render (or blocked label)
 ```
 
-**Parallelism:** O0–O2 and C0–C2 may run in parallel after present is stable.  
+**Parallelism:** O0-O2 and C0-C2 may run in parallel after present is stable.  
 **Serial:** O3 only after O2 and after host API research.
 
 **Does not depend on:** Grok paint unblock, Phase 12 publish, Phase 13 protocols.
@@ -251,8 +251,8 @@ Default: **off**.
 
 Track **complete** when:
 
-1. OMP: O0–O1 green, and **O2 live** (in-session automatic presentation after turns with explicit LaTeX) **or** O3 live.  
-2. OpenCode: C0–C1 green, and **C2 live** **or** explicit API-blocked with oneshot remaining.  
+1. OMP: O0-O1 green, and **O2 live** (in-session automatic presentation after turns with explicit LaTeX) **or** O3 live.  
+2. OpenCode: C0-C1 green, and **C2 live** **or** explicit API-blocked with oneshot remaining.  
 3. Both: source immutability + auto_protect + fail-open documented and tested.  
 4. `PHASE_GATES.md` / per-host `INCHAT.md` updated with fixture vs live honesty.  
 5. No claim that oneshot alone meets interactive product bar.

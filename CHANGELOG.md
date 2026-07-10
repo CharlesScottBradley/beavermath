@@ -21,7 +21,7 @@ Versioning follows [SemVer](https://semver.org/) once public crates are enabled.
 - Phase 13: probe / Sixel / SSH-tmux graphics / repair locales ([docs/PHASE13_SCOPE.md](docs/PHASE13_SCOPE.md))
 - Harness product bar: Claude IP3, Codex IP4, Grok P1, OMP O3 (Track H)
 
-## [0.1.0] — 2026-07-10 (private historical cut)
+## [0.1.0] - 2026-07-10 (private historical cut)
 
 **Status:** private candidate tag. Not the public freeze (main moved after tag).  
 **Tag:** `v0.1.0` (lags current main; use `v0.1.1` for public)

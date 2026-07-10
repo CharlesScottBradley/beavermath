@@ -19,7 +19,7 @@ const req = {
 };
 const { stdout } = await execFile("beavermath", ["hook"], { input: JSON.stringify(req) });
 const event = JSON.parse(stdout);
-// Supplemental preview only — do not mutate msg.content
+// Supplemental preview only - do not mutate msg.content
 await pi.sendMessage({
   role: "custom",
   content: event.semantic_preview ?? "",

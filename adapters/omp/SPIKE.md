@@ -13,7 +13,7 @@ interface MessageEndEvent {
 }
 ```
 
-Also: `message_start`, `message_update` (streaming — paint **source** only).
+Also: `message_start`, `message_update` (streaming - paint **source** only).
 
 ## Extension API used
 
@@ -36,7 +36,7 @@ interface CustomMessage {
   role: "custom";
   customType: string;
   content: string | (TextContent | ImageContent)[];  // what can be shown
-  display: boolean;  // show/hide in transcript — NOT presentation text
+  display: boolean;  // show/hide in transcript - NOT presentation text
   details?: T;
 }
 type MessageRenderer = (message, options, theme) => Component | undefined;
@@ -53,4 +53,4 @@ Configure via OMP `settings.extensions` paths or CLI `-e`.
 
 ## Fixture
 
-`tests/fixtures/message_end.json` — synthetic MessageEndEvent for unit tests without live UI.
+`tests/fixtures/message_end.json` - synthetic MessageEndEvent for unit tests without live UI.

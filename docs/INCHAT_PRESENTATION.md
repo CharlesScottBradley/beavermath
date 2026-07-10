@@ -1,7 +1,7 @@
 # Product bar: in-chat presentation (all harnesses)
 
 **Status:** required product outcome  
-**Date:** 2026-07-10 (IP0 shipped; IP1–IP5 host paint/API pending)  
+**Date:** 2026-07-10 (IP0 shipped; IP1-IP5 host paint/API pending)  
 **Parent plan:** [HARNESS_COMPAT_PLAN.md](HARNESS_COMPAT_PLAN.md)  
 **Shared API:** `beavermath_adapter::present_message_v1` / `beavermath present`
 
@@ -149,7 +149,7 @@ present_message_v1(source: &str, ctx: OutputContextV1) -> PresentationV1
 
 | Phase | Goal | Product bar? |
 |-------|------|--------------|
-| H0–H1 | Contract + oneshot | Scaffold |
+| H0-H1 | Contract + oneshot | Scaffold |
 | H2 G2a | Grok sidecar | **No** (done as scaffold) |
 | **IP0** | `present_message` API + tests + `beavermath present` | Shared |
 | **IP1 Grok P1** | Patch/PR Grok Build message paint path | **Yes for Grok** |

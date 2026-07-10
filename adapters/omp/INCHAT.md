@@ -1,16 +1,16 @@
 # OMP in-chat presentation
 
-**Status:** **O0–O2 live (installable)** · **O3 upstream-blocked**  
+**Status:** **O0-O2 live (installable)** · **O3 upstream-blocked**  
 **Product bar:** partial in-session (custom preview message), not true assistant-body inline
 
 ## Ladder
 
 | Step | Status |
 |------|--------|
-| O0 SPIKE | [SPIKE.md](SPIKE.md) — `message_end` + ExtensionAPI |
+| O0 SPIKE | [SPIKE.md](SPIKE.md) - `message_end` + ExtensionAPI |
 | O1 present on complete | [extension/index.js](extension/index.js) |
 | O2 in-session UX | Custom type `beavermath.math-preview` with `display: true` + `content: display_text` + Component renderer |
-| O3 true content renderer | **Blocked** — no `registerAssistantContentRenderer` |
+| O3 true content renderer | **Blocked** - no `registerAssistantContentRenderer` |
 
 ## Install
 

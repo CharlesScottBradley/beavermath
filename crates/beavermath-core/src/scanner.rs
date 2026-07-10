@@ -125,8 +125,9 @@ pub fn discover_strict(
                     ));
                     break;
                 }
+                let end = span.full_range.end;
                 spans.push(span);
-                i = spans.last().unwrap().full_range.end;
+                i = end;
                 continue;
             }
         }

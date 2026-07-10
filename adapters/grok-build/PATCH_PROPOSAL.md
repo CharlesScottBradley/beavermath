@@ -7,7 +7,7 @@
 ## Required behavior
 
 ```rust
-// Conceptual — assistant message body paint (after stream complete)
+// Conceptual - assistant message body paint (after stream complete)
 fn paint_assistant_message(msg: &Message) {
     let source = msg.content_exact_utf8(); // immutable store
     match beavermath_present(source) {

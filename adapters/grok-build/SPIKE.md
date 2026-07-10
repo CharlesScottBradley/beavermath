@@ -36,7 +36,7 @@ Hosts and Cursor-compat layers often provide one of:
 
 ### Fixture captured for CI
 
-`tests/fixtures/stop-message-end.json` — normalized HookRequestV1 after mapper:
+`tests/fixtures/stop-message-end.json` - normalized HookRequestV1 after mapper:
 
 ```json
 {

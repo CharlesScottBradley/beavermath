@@ -1,4 +1,4 @@
-a6dc221a0d8de5183ebc91c92addcbe9d841bdf8f9abb83ec7a042067efc0e91  beavermath-0.1.0-aarch64-apple-darwin.tar.gz
-f1993438aee9ed72c10a8cf5aa54ce1ab2ee51d65d6501300b6965fffc1edb33  beavermath-0.1.0-x86_64-apple-darwin.tar.gz
-1091d0f74588d7b10eda14355a6826b28de8ce5f100c748ea614a2b1082e4568  beavermath (unpacked aarch64-apple-darwin)
-1d8111970f382ded08d7cc040383dbac1c7d7643ac34bda5d86b22b8997d1288  beavermath (unpacked x86_64-apple-darwin)
+4bcce8c325d7713a06bbbb0ef908b146fdbc561b8447893f34e26c1598987f92  beavermath-0.1.1-aarch64-apple-darwin.tar.gz
+1a4492b1bc2e2c4af9ac0d5b6333c2ff491c44bc9291f0244e2be9863b24cadd  beavermath-0.1.1-x86_64-apple-darwin.tar.gz
+4d804c4e8a577240c12856dbbc8d07cc56e0abe5f23dbf77711befeeb60142ce  beavermath (unpacked aarch64-apple-darwin)
+5044c016a71ae5cce6bf8a97073b637304ffc504430982ddcad601097d7c185b  beavermath (unpacked x86_64-apple-darwin)

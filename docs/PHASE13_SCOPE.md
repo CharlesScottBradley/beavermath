@@ -1,4 +1,4 @@
-# Phase 13 scope — post-v1 terminal and semantic expansion
+# Phase 13 scope - post-v1 terminal and semantic expansion
 
 **Status:** scoped (not started)  
 **Date:** 2026-07-10  
@@ -20,7 +20,7 @@ Phase 13 adds **optional, experimental terminal and semantic surfaces** that wer
 | **13C** | SSH / tmux graphics | End-terminal confirmation + direct Kitty + **exact one-layer** tmux wrapper; fail closed otherwise |
 | **13D** | Repair locales / a11y | Extra host-owned repair providers; frozen locale profiles; MathML navigation where hosts expose trees |
 
-**Hard rule from ROADMAP:** this phase carries **no v1 compatibility claim**. Shipping any of 13A–D must not change default `0.1.x` behavior, default CLI modes, or public “supported” matrix rows without a new version + claim review.
+**Hard rule from ROADMAP:** this phase carries **no v1 compatibility claim**. Shipping any of 13A-D must not change default `0.1.x` behavior, default CLI modes, or public “supported” matrix rows without a new version + claim review.
 
 ---
 
@@ -34,7 +34,7 @@ Keep these on **separate tracks**. Do not bury them under “Phase 13” or they
 | **H** Harness product bar | Grok P1 paint, OMP O3 content renderer, Claude IP3, Codex IP4, OpenCode C2 | Host APIs; see [INCHAT_PRESENTATION.md](INCHAT_PRESENTATION.md) |
 | **11R** Adapter honesty | Claude/Codex oneshot already live; document P1/P2/P3 spikes without claiming interactive | Phase 11 residual / IP track |
 
-**Claude / Codex recommendation:** run as **Track H (IP3 / IP4)** in parallel with early 13A design if desired. They are **not** 13A–D deliverables. Product bar for Claude/Codex remains host-display override or honest oneshot-only labels ([adapters/claude-code/INCHAT.md](../adapters/claude-code/INCHAT.md), [adapters/codex/INCHAT.md](../adapters/codex/INCHAT.md)).
+**Claude / Codex recommendation:** run as **Track H (IP3 / IP4)** in parallel with early 13A design if desired. They are **not** 13A-D deliverables. Product bar for Claude/Codex remains host-display override or honest oneshot-only labels ([adapters/claude-code/INCHAT.md](../adapters/claude-code/INCHAT.md), [adapters/codex/INCHAT.md](../adapters/codex/INCHAT.md)).
 
 ---
 
@@ -55,7 +55,7 @@ Keep these on **separate tracks**. Do not bury them under “Phase 13” or they
 | Artifact | Features | Claims |
 |----------|----------|--------|
 | Default `beavermath` (0.1.x line) | no `probe`, no Sixel, no mux graphics | Same as public 0.1.0 terminal policy |
-| Experimental build e.g. `beavermath-exp` or feature `experimental-protocols` | 13A–C behind flags | Explicitly experimental; README “not supported v1” |
+| Experimental build e.g. `beavermath-exp` or feature `experimental-protocols` | 13A-C behind flags | Explicitly experimental; README “not supported v1” |
 | CI job | default + experimental matrix rows labeled | Fail if experimental frames appear in default machine-channel tests |
 
 ### 4.2 CLI surface (reserved names)
@@ -75,7 +75,7 @@ From ROADMAP §6.2 and [PHASE_GATES.md](PHASE_GATES.md): exact source identity; 
 
 ## 5. Work packages
 
-### 13A — Experimental safe probing
+### 13A - Experimental safe probing
 
 **Problem:** v1 refuses all queries. Some post-v1 paths need confirmed capability without stealing keystrokes or leaving termios dirty.
 
@@ -104,11 +104,11 @@ From ROADMAP §6.2 and [PHASE_GATES.md](PHASE_GATES.md): exact source identity; 
 
 **Risk:** probe becomes a footgun for “just enable pixels.” Mitigation: experimental package name + claim ban in README/CHANGELOG.
 
-**Rough effort:** design + PTY harness 3–5 days; allowlist + restore edge cases 2–4 days. **Total ~1–2 weeks** focused.
+**Rough effort:** design + PTY harness 3-5 days; allowlist + restore edge cases 2-4 days. **Total ~1-2 weeks** focused.
 
 ---
 
-### 13B — Sixel
+### 13B - Sixel
 
 **Problem:** Sixel expands attack surface (DCS, repeat, palette, cursor). Excluded from v1 for that reason (FR-036).
 
@@ -136,13 +136,13 @@ From ROADMAP §6.2 and [PHASE_GATES.md](PHASE_GATES.md): exact source identity; 
 
 **Risk:** false “works on my xterm” without parser hostility. Mitigation: parser tests before encoder polish.
 
-**Rough effort:** parser + corpus 1–2 weeks; encoder + real terminal 1 week. **Total ~2–3 weeks**.
+**Rough effort:** parser + corpus 1-2 weeks; encoder + real terminal 1 week. **Total ~2-3 weeks**.
 
 **Dependency:** 13A optional for auto-detect; **not required** if capability is host-attested only.
 
 ---
 
-### 13C — SSH and tmux graphics
+### 13C - SSH and tmux graphics
 
 **Problem:** remote and multiplexed paths strip or mis-handle graphics; nested mux and GNU screen are untrusted (FR-040).
 
@@ -167,13 +167,13 @@ From ROADMAP §6.2 and [PHASE_GATES.md](PHASE_GATES.md): exact source identity; 
 
 **Risk:** flaky CI without real mux fixtures. Mitigation: scripted tmux in CI where available; manual signed matrix for the rest.
 
-**Rough effort:** design + fail-closed policy 3–5 days; Kitty-through-one-layer tmux 1–2 weeks; SSH confirm path 1 week. **Total ~3–4 weeks**.
+**Rough effort:** design + fail-closed policy 3-5 days; Kitty-through-one-layer tmux 1-2 weeks; SSH confirm path 1 week. **Total ~3-4 weeks**.
 
 **Dependency:** strong on typed Kitty frames already in v1; 13A useful for remote deadlines.
 
 ---
 
-### 13D — Repair providers, locales, MathML navigation
+### 13D - Repair providers, locales, MathML navigation
 
 **Problem:** repair is opt-in and host-owned; a11y locales and structured navigation are incomplete.
 
@@ -198,7 +198,7 @@ From ROADMAP §6.2 and [PHASE_GATES.md](PHASE_GATES.md): exact source identity; 
 
 **Risk:** quality theater without native review. Mitigation: block locale claim until review artifact exists.
 
-**Rough effort:** highly variable; **plan 1–2 weeks** for one locale + one provider skeleton, then stop for review.
+**Rough effort:** highly variable; **plan 1-2 weeks** for one locale + one provider skeleton, then stop for review.
 
 **Dependency:** Phase 6 repair contract already present; no need to wait for 13B/C.
 
@@ -243,7 +243,7 @@ No shared binary claim until both tracks pass their own gates. Release notes lis
 
 Phase 13 is **complete** only when:
 
-1. 13A–13C either **ship experimental with full gates** or are **explicitly deferred again** with dated reasons (no silent half-claims).
+1. 13A-13C either **ship experimental with full gates** or are **explicitly deferred again** with dated reasons (no silent half-claims).
 2. Default public builds still match v1 terminal policy (zero query; no Sixel; mux/SSH text fallback).
 3. Experimental artifacts, if published, have separate version/channel naming and digests.
 4. CHANGELOG / README / SUPPORT matrix rows distinguish supported vs experimental.

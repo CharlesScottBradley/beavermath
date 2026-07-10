@@ -19,13 +19,9 @@ impl KittyFrame {
         let b64 = STANDARD.encode(png);
         let mut out = Vec::new();
         let chunk_size = 4096usize;
-        let chunks: Vec<&str> = b64
-            .as_bytes()
-            .chunks(chunk_size)
-            .map(|c| std::str::from_utf8(c).unwrap())
-            .collect();
-        let n = chunks.len();
-        for (i, chunk) in chunks.iter().enumerate() {
+        // Standard base64 alphabet is ASCII; write chunks as raw bytes.
+        let n = b64.as_bytes().chunks(chunk_size).len();
+        for (i, chunk) in b64.as_bytes().chunks(chunk_size).enumerate() {
             let more = if i + 1 < n { 1 } else { 0 };
             // a=T transmit+display, t=d direct, f=100 PNG
             let header = if i == 0 {
@@ -34,7 +30,7 @@ impl KittyFrame {
                 format!("\x1b_Gm={more};")
             };
             out.extend_from_slice(header.as_bytes());
-            out.extend_from_slice(chunk.as_bytes());
+            out.extend_from_slice(chunk);
             out.extend_from_slice(b"\x1b\\");
         }
         // Validate no forbidden keys
