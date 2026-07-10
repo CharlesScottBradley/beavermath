@@ -78,16 +78,17 @@ pub fn present_message_v1(req: &PresentRequestV1) -> Result<PresentationV1, Stri
     let mode = req.mode.unwrap_or(PresentationMode::Semantic);
 
     // Process with auto_protect (default ProcessOptions).
-    let mut opts = ProcessOptions::default();
-    opts.auto_protect = true;
+    let opts = ProcessOptions {
+        auto_protect: true,
+        ..ProcessOptions::default()
+    };
     let doc = process_document(source.as_bytes(), &[], &opts)
         .map_err(|d| format!("{}: {}", d.code.as_str(), d.message))?;
 
     let display_text = match mode {
-        PresentationMode::Semantic | PresentationMode::PixelRef => doc
-            .filtered_text
-            .clone()
-            .unwrap_or_else(|| source.clone()),
+        PresentationMode::Semantic | PresentationMode::PixelRef => {
+            doc.filtered_text.clone().unwrap_or_else(|| source.clone())
+        }
         PresentationMode::Unicode => {
             // Prefer unicode visuals per expression when rebuilding.
             rebuild_with_unicode(source, &doc.expressions)
@@ -98,7 +99,7 @@ pub fn present_message_v1(req: &PresentRequestV1) -> Result<PresentationV1, Stri
         .expressions
         .iter()
         .map(|a| PresentationSpanV1 {
-            range: a.expression_byte_range.clone(),
+            range: a.expression_byte_range,
             expression_exact_utf8: a.expression_exact_utf8.clone(),
             expression_sha256: a.expression_sha256.clone(),
             semantic: a.semantic.text.clone(),
@@ -281,6 +282,10 @@ mod tests {
         assert_eq!(p.exact_source, source);
         assert_ne!(p.display_text, p.exact_source);
         assert!(p.exact_source.contains("$E=mc^2$"));
-        assert!(!p.display_text.contains("$E=mc^2$") || p.display_text.contains("power") || p.display_text.contains("equals"));
+        assert!(
+            !p.display_text.contains("$E=mc^2$")
+                || p.display_text.contains("power")
+                || p.display_text.contains("equals")
+        );
     }
 }

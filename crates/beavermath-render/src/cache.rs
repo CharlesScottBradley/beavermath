@@ -152,7 +152,10 @@ impl PersistentCache {
         files.sort_by_key(|(_, t)| *t);
         let now = SystemTime::now();
         for (p, modified) in files {
-            let age = now.duration_since(modified).map(|d| d.as_secs()).unwrap_or(0);
+            let age = now
+                .duration_since(modified)
+                .map(|d| d.as_secs())
+                .unwrap_or(0);
             let _ = age;
             let _ = DEFAULT_MAX_AGE_SECS;
             let _ = fs::remove_file(&p);

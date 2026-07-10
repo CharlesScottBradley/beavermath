@@ -12,7 +12,12 @@ pub struct OmpAdapter {
 }
 
 impl OmpAdapter {
-    pub fn on_turn_complete(&mut self, message_id: &str, revision: u64, content: &str) -> AdapterEventV1 {
+    pub fn on_turn_complete(
+        &mut self,
+        message_id: &str,
+        revision: u64,
+        content: &str,
+    ) -> AdapterEventV1 {
         // Model prompts never need BeaverMath instructions; this is host-side.
         self.store.on_message_end(message_id, revision, content)
     }

@@ -186,7 +186,9 @@ impl LifecycleStore {
     }
 
     pub fn exact_source(&self, message_id: &str) -> Option<&str> {
-        self.entries.get(message_id).map(|e| e.exact_source.as_str())
+        self.entries
+            .get(message_id)
+            .map(|e| e.exact_source.as_str())
     }
 
     pub fn on_cancel(&mut self, message_id: &str) -> AdapterEventV1 {

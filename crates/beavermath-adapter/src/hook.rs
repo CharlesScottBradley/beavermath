@@ -44,27 +44,22 @@ pub fn process_hook_request(
     store: &mut LifecycleStore,
     req: &HookRequestV1,
 ) -> Result<HookResponseV1, (ExitStatus, String)> {
-    let kind = parse_kind(&req.kind).ok_or_else(|| {
-        (
-            ExitStatus::Usage,
-            format!("unknown kind: {}", req.kind),
-        )
-    })?;
+    let kind = parse_kind(&req.kind)
+        .ok_or_else(|| (ExitStatus::Usage, format!("unknown kind: {}", req.kind)))?;
 
     let mut event = match kind {
         EventKind::MessageEnd | EventKind::TurnEnd => {
-            let content = req.content.as_deref().ok_or_else(|| {
-                (
-                    ExitStatus::Usage,
-                    "content required for message_end".into(),
-                )
-            })?;
+            let content = req
+                .content
+                .as_deref()
+                .ok_or_else(|| (ExitStatus::Usage, "content required for message_end".into()))?;
             store.on_message_end(&req.message_id, req.revision, content)
         }
         EventKind::Replace => {
-            let content = req.content.as_deref().ok_or_else(|| {
-                (ExitStatus::Usage, "content required for replace".into())
-            })?;
+            let content = req
+                .content
+                .as_deref()
+                .ok_or_else(|| (ExitStatus::Usage, "content required for replace".into()))?;
             store.on_replace(&req.message_id, req.revision, content)
         }
         EventKind::Delete => store.on_delete(&req.message_id),
@@ -84,12 +79,7 @@ pub fn process_hook_request(
                 sha256_hex(req.content.as_deref().unwrap_or("").as_bytes()),
             )
         }
-        other => AdapterEventV1::new(
-            other,
-            &req.message_id,
-            req.revision,
-            sha256_hex(b""),
-        ),
+        other => AdapterEventV1::new(other, &req.message_id, req.revision, sha256_hex(b"")),
     };
 
     // Align kind for turn_end alias
@@ -103,8 +93,13 @@ pub fn process_hook_request(
     if req.write_preview {
         if let Some(preview) = event.semantic_preview.as_ref() {
             let dir = resolve_preview_dir(req.preview_dir.as_deref(), req.session_id.as_deref());
-            match write_sidecar_preview(&dir, &req.message_id, req.revision, preview, exact_source.as_deref())
-            {
+            match write_sidecar_preview(
+                &dir,
+                &req.message_id,
+                req.revision,
+                preview,
+                exact_source.as_deref(),
+            ) {
                 Ok(p) => preview_path = Some(p.display().to_string()),
                 Err(e) => {
                     // Fail-open for preview write: still return event
@@ -125,19 +120,14 @@ pub fn process_hook_json(
     store: &mut LifecycleStore,
     json: &str,
 ) -> Result<String, (ExitStatus, String)> {
-    let req: HookRequestV1 = serde_json::from_str(json).map_err(|e| {
-        (ExitStatus::Usage, format!("invalid JSON: {e}"))
-    })?;
+    let req: HookRequestV1 = serde_json::from_str(json)
+        .map_err(|e| (ExitStatus::Usage, format!("invalid JSON: {e}")))?;
     let resp = process_hook_request(store, &req)?;
-    let out = serde_json::to_string(&resp).map_err(|e| {
-        (ExitStatus::Internal, format!("serialize: {e}"))
-    })?;
+    let out = serde_json::to_string(&resp)
+        .map_err(|e| (ExitStatus::Internal, format!("serialize: {e}")))?;
     // Machine purity
     if out.as_bytes().contains(&0x1b) {
-        return Err((
-            ExitStatus::Internal,
-            "refused ESC in machine JSON".into(),
-        ));
+        return Err((ExitStatus::Internal, "refused ESC in machine JSON".into()));
     }
     Ok(out)
 }
@@ -190,7 +180,13 @@ fn write_sidecar_preview(
     }
     let safe_id: String = message_id
         .chars()
-        .map(|c| if c.is_ascii_alphanumeric() || c == '-' || c == '_' { c } else { '_' })
+        .map(|c| {
+            if c.is_ascii_alphanumeric() || c == '-' || c == '_' {
+                c
+            } else {
+                '_'
+            }
+        })
         .collect();
     let path = dir.join(format!("{safe_id}-r{revision}.md"));
     let mut body = String::new();

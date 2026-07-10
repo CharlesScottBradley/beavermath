@@ -37,7 +37,10 @@ fn negative_undelimited_file() {
     let path = corpus_root().join("negative/undelimited.txt");
     let input = std::fs::read_to_string(&path).expect("undelimited corpus");
     let (spans, _) = discover_strict(&input, &[], &LimitsV1::default()).unwrap();
-    assert!(spans.is_empty(), "undelimited prose must not select: {spans:?}");
+    assert!(
+        spans.is_empty(),
+        "undelimited prose must not select: {spans:?}"
+    );
 }
 
 #[test]

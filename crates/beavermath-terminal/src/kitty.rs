@@ -80,7 +80,12 @@ impl fmt::Display for KittyFrame {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         // Never use Display for TTY writes of raw frames in library consumers;
         // provided for debug only.
-        write!(f, "KittyFrame(id={}, {} bytes)", self.image_id, self.bytes.len())
+        write!(
+            f,
+            "KittyFrame(id={}, {} bytes)",
+            self.image_id,
+            self.bytes.len()
+        )
     }
 }
 

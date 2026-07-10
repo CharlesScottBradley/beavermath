@@ -19,7 +19,7 @@ pub struct LimitsV1 {
 impl Default for LimitsV1 {
     fn default() -> Self {
         Self {
-            max_input_bytes: 1 * 1024 * 1024,
+            max_input_bytes: 1024 * 1024,
             max_expression_bytes: 64 * 1024,
             max_expressions_per_message: 128,
             max_tokens: 100_000,

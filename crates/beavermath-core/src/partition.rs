@@ -64,7 +64,7 @@ pub fn build_partition(input_len: usize, math: &[MathSpan]) -> DocumentPartition
 }
 
 /// Concatenate exact slices; must equal original bytes.
-pub fn reconstruct<'a>(input: &'a str, partition: &DocumentPartitionV1) -> String {
+pub fn reconstruct(input: &str, partition: &DocumentPartitionV1) -> String {
     let mut out = String::with_capacity(input.len());
     for s in &partition.spans {
         out.push_str(&input[s.range.start..s.range.end]);
@@ -73,8 +73,7 @@ pub fn reconstruct<'a>(input: &'a str, partition: &DocumentPartitionV1) -> Strin
 }
 
 pub fn partition_is_lossless(input: &str, partition: &DocumentPartitionV1) -> bool {
-    reconstruct(input, partition) == input
-        && no_overlap_or_gap(input.len(), partition)
+    reconstruct(input, partition) == input && no_overlap_or_gap(input.len(), partition)
 }
 
 fn no_overlap_or_gap(len: usize, partition: &DocumentPartitionV1) -> bool {

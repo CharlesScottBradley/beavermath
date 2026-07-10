@@ -256,7 +256,7 @@ fn replace_common_commands(tex: &str) -> String {
     for (a, b) in pairs {
         s = s.replace(a, b);
     }
-    s = s.replace('{', "").replace('}', "");
+    s = s.replace(['{', '}'], "");
     s.split_whitespace().collect::<Vec<_>>().join(" ")
 }
 
@@ -336,12 +336,10 @@ fn find_top_level_underscore(tex: &str) -> Option<usize> {
 }
 
 fn to_ascii_approx(tex: &str) -> String {
-    let s = replace_common_commands(tex)
-        .replace('^', "^")
+    replace_common_commands(tex)
         .chars()
         .filter(|c| c.is_ascii() && !c.is_control())
-        .collect::<String>();
-    s
+        .collect::<String>()
 }
 
 fn to_unicode_approx(tex: &str) -> String {
@@ -362,7 +360,7 @@ fn to_unicode_approx(tex: &str) -> String {
     ] {
         s = s.replace(a, b);
     }
-    s.replace('{', "").replace('}', "").replace("\\", "")
+    s.replace(['{', '}'], "").replace("\\", "")
 }
 
 #[cfg(test)]

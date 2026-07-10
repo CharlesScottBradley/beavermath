@@ -42,23 +42,16 @@ fn is_protected(offset: usize, ranges: &[ProtectedRange]) -> bool {
 }
 
 fn ranges_overlap_span(start: usize, end: usize, ranges: &[ProtectedRange]) -> bool {
-    ranges
-        .iter()
-        .any(|r| start < r.end && end > r.start)
+    ranges.iter().any(|r| start < r.end && end > r.start)
 }
 
 /// Validate protected ranges: ordered, in bounds, UTF-8 char boundaries.
-pub fn validate_protected(
-    input: &str,
-    ranges: &[ProtectedRange],
-) -> Result<(), ScanError> {
+pub fn validate_protected(input: &str, ranges: &[ProtectedRange]) -> Result<(), ScanError> {
     let len = input.len();
     let mut prev_end = 0usize;
     for (i, r) in ranges.iter().enumerate() {
         if r.start > r.end {
-            return Err(ScanError::ProtectedRange(format!(
-                "range {i}: start > end"
-            )));
+            return Err(ScanError::ProtectedRange(format!("range {i}: start > end")));
         }
         if r.end > len {
             return Err(ScanError::ProtectedRange(format!(
@@ -110,10 +103,7 @@ pub fn discover_strict(
         }
 
         // Fenced ```math / ```latex / ```tex
-        if bytes[i] == b'`'
-            && i + 3 <= bytes.len()
-            && &bytes[i..i + 3] == b"```"
-        {
+        if bytes[i] == b'`' && i + 3 <= bytes.len() && &bytes[i..i + 3] == b"```" {
             if let Some(span) = try_fence(input, i, protected) {
                 if span.full_range.end - span.full_range.start > limits.max_expression_bytes {
                     diagnostics.push(
@@ -236,10 +226,7 @@ pub fn discover_strict(
                                 start: i,
                                 end: full_end,
                             },
-                            inner_range: ByteRangeV1 {
-                                start: i + 1,
-                                end,
-                            },
+                            inner_range: ByteRangeV1 { start: i + 1, end },
                             mode: DisplayMode::Inline,
                             delimiter: DelimiterKind::DollarInline,
                         });
@@ -277,10 +264,7 @@ pub fn discover_strict(
                                     start: i,
                                     end: full_end,
                                 },
-                                inner_range: ByteRangeV1 {
-                                    start: i + 2,
-                                    end,
-                                },
+                                inner_range: ByteRangeV1 { start: i + 2, end },
                                 mode: DisplayMode::Inline,
                                 delimiter: DelimiterKind::ParenInline,
                             },
@@ -319,10 +303,7 @@ pub fn discover_strict(
                                     start: i,
                                     end: full_end,
                                 },
-                                inner_range: ByteRangeV1 {
-                                    start: i + 2,
-                                    end,
-                                },
+                                inner_range: ByteRangeV1 { start: i + 2, end },
                                 mode: DisplayMode::Block,
                                 delimiter: DelimiterKind::BracketDisplay,
                             },
@@ -525,7 +506,9 @@ fn looks_like_currency(bytes: &[u8], open: usize, close: usize) -> bool {
     // "5.00 today and " style: spaces + no backslash commands
     if has_space && !inner.contains(&b'\\') && !inner.contains(&b'^') && !inner.contains(&b'_') {
         // If mostly digits/spaces/punctuation, currency/prose
-        let mathish = inner.iter().any(|b| matches!(b, b'+' | b'=' | b'*' | b'/' | b'<' | b'>'));
+        let mathish = inner
+            .iter()
+            .any(|b| matches!(b, b'+' | b'=' | b'*' | b'/' | b'<' | b'>'));
         if !mathish {
             return true;
         }
@@ -545,7 +528,10 @@ mod tests {
         let (spans, _) = discover_strict(input, &[], &LimitsV1::default()).unwrap();
         assert_eq!(spans.len(), 2);
         assert_eq!(spans[0].mode, DisplayMode::Inline);
-        assert_eq!(&input[spans[0].inner_range.start..spans[0].inner_range.end], "x^2");
+        assert_eq!(
+            &input[spans[0].inner_range.start..spans[0].inner_range.end],
+            "x^2"
+        );
         assert_eq!(spans[1].mode, DisplayMode::Block);
     }
 
@@ -554,8 +540,14 @@ mod tests {
         let input = r"inline \(a+b\) display \[c\]";
         let (spans, _) = discover_strict(input, &[], &LimitsV1::default()).unwrap();
         assert_eq!(spans.len(), 2);
-        assert_eq!(&input[spans[0].inner_range.start..spans[0].inner_range.end], "a+b");
-        assert_eq!(&input[spans[1].inner_range.start..spans[1].inner_range.end], "c");
+        assert_eq!(
+            &input[spans[0].inner_range.start..spans[0].inner_range.end],
+            "a+b"
+        );
+        assert_eq!(
+            &input[spans[1].inner_range.start..spans[1].inner_range.end],
+            "c"
+        );
     }
 
     #[test]
@@ -576,7 +568,10 @@ mod tests {
         }];
         let (spans, _) = discover_strict(input, &protected, &LimitsV1::default()).unwrap();
         assert_eq!(spans.len(), 1);
-        assert_eq!(&input[spans[0].inner_range.start..spans[0].inner_range.end], "y");
+        assert_eq!(
+            &input[spans[0].inner_range.start..spans[0].inner_range.end],
+            "y"
+        );
     }
 
     #[test]
@@ -584,7 +579,9 @@ mod tests {
         let input = "oops $x and more";
         let (spans, diags) = discover_strict(input, &[], &LimitsV1::default()).unwrap();
         assert!(spans.is_empty());
-        assert!(diags.iter().any(|d| d.code == DiagnosticCode::UnclosedDelimiter));
+        assert!(diags
+            .iter()
+            .any(|d| d.code == DiagnosticCode::UnclosedDelimiter));
     }
 
     #[test]
@@ -592,7 +589,10 @@ mod tests {
         let input = "before\n```math\nx+1\n```\nafter";
         let (spans, _) = discover_strict(input, &[], &LimitsV1::default()).unwrap();
         assert_eq!(spans.len(), 1);
-        assert_eq!(&input[spans[0].inner_range.start..spans[0].inner_range.end], "x+1");
+        assert_eq!(
+            &input[spans[0].inner_range.start..spans[0].inner_range.end],
+            "x+1"
+        );
     }
 
     #[test]

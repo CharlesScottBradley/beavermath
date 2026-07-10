@@ -158,9 +158,9 @@ fn protect_fenced_non_math(input: &str, ranges: &mut Vec<ProtectedRange>) {
             line_end += 1;
         }
         let tag = input[i + 3..line_end].trim().to_ascii_lowercase();
-        let is_math = tag == "math" || tag == "latex" || tag == "tex" || tag.is_empty() && false;
         // empty tag or other languages = protected code; math/latex/tex left for discovery
-        if tag == "math" || tag == "latex" || tag == "tex" {
+        let is_math = tag == "math" || tag == "latex" || tag == "tex";
+        if is_math {
             // skip past this fence opener; discovery owns it
             i = line_end;
             continue;
@@ -204,7 +204,10 @@ mod tests {
         let prot = default_protected_ranges(input);
         let (spans, _) = discover_strict(input, &prot, &LimitsV1::default()).unwrap();
         assert_eq!(spans.len(), 1);
-        assert_eq!(&input[spans[0].inner_range.start..spans[0].inner_range.end], "a");
+        assert_eq!(
+            &input[spans[0].inner_range.start..spans[0].inner_range.end],
+            "a"
+        );
     }
 
     #[test]
@@ -213,7 +216,10 @@ mod tests {
         let prot = default_protected_ranges(input);
         let (spans, _) = discover_strict(input, &prot, &LimitsV1::default()).unwrap();
         assert_eq!(spans.len(), 1);
-        assert_eq!(&input[spans[0].inner_range.start..spans[0].inner_range.end], "y");
+        assert_eq!(
+            &input[spans[0].inner_range.start..spans[0].inner_range.end],
+            "y"
+        );
     }
 
     #[test]
@@ -222,6 +228,9 @@ mod tests {
         let prot = default_protected_ranges(input);
         let (spans, _) = discover_strict(input, &prot, &LimitsV1::default()).unwrap();
         assert_eq!(spans.len(), 1);
-        assert_eq!(&input[spans[0].inner_range.start..spans[0].inner_range.end], "b");
+        assert_eq!(
+            &input[spans[0].inner_range.start..spans[0].inner_range.end],
+            "b"
+        );
     }
 }

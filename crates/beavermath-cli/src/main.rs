@@ -28,7 +28,11 @@ use std::path::PathBuf;
 use std::process::ExitCode;
 
 #[derive(Parser, Debug)]
-#[command(name = "beavermath", version, about = "Source-preserving terminal math renderer")]
+#[command(
+    name = "beavermath",
+    version,
+    about = "Source-preserving terminal math renderer"
+)]
 struct Cli {
     #[command(subcommand)]
     command: Commands,
@@ -194,30 +198,32 @@ fn run(cli: Cli) -> Result<ExitStatus, ExitStatus> {
             }
 
             let decision = resolve_decision(format, graphics.as_deref(), &ctx);
-            let mut opts = ProcessOptions::default(); // auto_protect = true
-            opts.request_png = png
-                || matches!(format, Format::Png)
-                || matches!(
-                    decision,
-                    PresentationDecision::KittyPng | PresentationDecision::Iterm2Png
-                );
-            opts.request_svg = svg || matches!(format, Format::Svg);
+            let opts = ProcessOptions {
+                request_png: png
+                    || matches!(format, Format::Png)
+                    || matches!(
+                        decision,
+                        PresentationDecision::KittyPng | PresentationDecision::Iterm2Png
+                    ),
+                request_svg: svg || matches!(format, Format::Svg),
+                ..ProcessOptions::default() // auto_protect = true
+            };
 
             if direct {
                 let m = match mode {
                     ModeArg::Inline => DisplayMode::Inline,
                     ModeArg::Block => DisplayMode::Block,
                 };
-                let art = process_expression_with_visuals(input.as_bytes(), m, &opts)
-                    .map_err(|d| {
+                let art =
+                    process_expression_with_visuals(input.as_bytes(), m, &opts).map_err(|d| {
                         eprintln!("{}", d.human_line());
                         ExitStatus::ParseOrRender
                     })?;
                 emit_artifact_format(&art, format, &ctx, decision, graphics.as_deref())?;
             } else {
                 // Empty host ranges; process_document merges default URL/code protection.
-                let doc = process_document_with_visuals(input.as_bytes(), &[], &opts)
-                    .map_err(|d| {
+                let doc =
+                    process_document_with_visuals(input.as_bytes(), &[], &opts).map_err(|d| {
                         eprintln!("{}", d.human_line());
                         ExitStatus::ParseOrRender
                     })?;
@@ -227,15 +233,12 @@ fn run(cli: Cli) -> Result<ExitStatus, ExitStatus> {
         }
         Commands::Filter { file, document } => {
             let input = read_input(document, file)?;
-            let doc = process_document_with_visuals(
-                input.as_bytes(),
-                &[],
-                &ProcessOptions::default(),
-            )
-            .map_err(|d| {
-                eprintln!("{}", d.human_line());
-                ExitStatus::ParseOrRender
-            })?;
+            let doc =
+                process_document_with_visuals(input.as_bytes(), &[], &ProcessOptions::default())
+                    .map_err(|d| {
+                        eprintln!("{}", d.human_line());
+                        ExitStatus::ParseOrRender
+                    })?;
             let text = doc.filtered_text.unwrap_or(input);
             let safe = escape_for_terminal_text(&text);
             let scan = scan_machine_channel(safe.as_bytes());
@@ -291,7 +294,8 @@ fn run(cli: Cli) -> Result<ExitStatus, ExitStatus> {
             }
             CacheCmd::Clear { path } => {
                 if path.exists() {
-                    let cache = PersistentCache::open(&path, "local").map_err(|_| ExitStatus::Io)?;
+                    let cache =
+                        PersistentCache::open(&path, "local").map_err(|_| ExitStatus::Io)?;
                     cache.clear().map_err(|_| ExitStatus::Io)?;
                 }
                 println!("{{\"cleared\":true}}");
@@ -386,8 +390,9 @@ fn run(cli: Cli) -> Result<ExitStatus, ExitStatus> {
             let session = if let Some(d) = session_dir {
                 d
             } else {
-                let cwd = cwd
-                    .unwrap_or_else(|| std::env::current_dir().unwrap_or_else(|_| PathBuf::from(".")));
+                let cwd = cwd.unwrap_or_else(|| {
+                    std::env::current_dir().unwrap_or_else(|_| PathBuf::from("."))
+                });
                 let cwd_s = cwd.to_string_lossy().to_string();
                 latest_session_for_cwd(&cwd_s).ok_or_else(|| {
                     eprintln!(
@@ -542,10 +547,7 @@ fn build_context(trusted: Option<&str>) -> OutputContextV1 {
     ctx
 }
 
-fn read_input(
-    expression: Option<String>,
-    file: Option<PathBuf>,
-) -> Result<String, ExitStatus> {
+fn read_input(expression: Option<String>, file: Option<PathBuf>) -> Result<String, ExitStatus> {
     if let Some(p) = file {
         return std::fs::read_to_string(p).map_err(|e| {
             eprintln!("beavermath[io]: {e}");

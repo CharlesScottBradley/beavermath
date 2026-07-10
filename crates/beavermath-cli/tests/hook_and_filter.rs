@@ -1,14 +1,16 @@
 //! Binary-level tests for hook + filter (shipped entry points).
 
+use std::io::Write;
 use std::path::PathBuf;
 use std::process::{Command, Stdio};
-use std::io::Write;
 
 fn bin() -> PathBuf {
     // Prefer cargo-built binary path from CARGO_BIN_EXE
     option_env!("CARGO_BIN_EXE_beavermath")
         .map(PathBuf::from)
-        .unwrap_or_else(|| PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../target/debug/beavermath"))
+        .unwrap_or_else(|| {
+            PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../target/debug/beavermath")
+        })
 }
 
 #[test]
@@ -31,7 +33,11 @@ fn hook_message_end_dual_stable() {
             .write_all(req.as_bytes())
             .unwrap();
         let out = child.wait_with_output().unwrap();
-        assert!(out.status.success(), "stderr={}", String::from_utf8_lossy(&out.stderr));
+        assert!(
+            out.status.success(),
+            "stderr={}",
+            String::from_utf8_lossy(&out.stderr)
+        );
         assert!(!out.stdout.contains(&0x1b));
         String::from_utf8(out.stdout).unwrap()
     };
@@ -75,7 +81,12 @@ fn filter_dual_stable() {
             .stdout(Stdio::piped())
             .spawn()
             .unwrap();
-        child.stdin.as_mut().unwrap().write_all(doc.as_bytes()).unwrap();
+        child
+            .stdin
+            .as_mut()
+            .unwrap()
+            .write_all(doc.as_bytes())
+            .unwrap();
         let out = child.wait_with_output().unwrap();
         assert!(out.status.success());
         out.stdout
@@ -94,9 +105,18 @@ fn present_matches_filter_dual() {
             .stdout(Stdio::piped())
             .spawn()
             .unwrap();
-        child.stdin.as_mut().unwrap().write_all(source.as_bytes()).unwrap();
+        child
+            .stdin
+            .as_mut()
+            .unwrap()
+            .write_all(source.as_bytes())
+            .unwrap();
         let out = child.wait_with_output().unwrap();
-        assert!(out.status.success(), "{}", String::from_utf8_lossy(&out.stderr));
+        assert!(
+            out.status.success(),
+            "{}",
+            String::from_utf8_lossy(&out.stderr)
+        );
         assert!(!out.stdout.contains(&0x1b));
         String::from_utf8(out.stdout).unwrap()
     };
@@ -114,11 +134,19 @@ fn present_matches_filter_dual() {
         .stdout(Stdio::piped())
         .spawn()
         .unwrap();
-    child.stdin.as_mut().unwrap().write_all(source.as_bytes()).unwrap();
+    child
+        .stdin
+        .as_mut()
+        .unwrap()
+        .write_all(source.as_bytes())
+        .unwrap();
     let fout = child.wait_with_output().unwrap();
     let filtered = String::from_utf8(fout.stdout).unwrap();
     assert_eq!(va["display_text"].as_str().unwrap(), filtered.trim_end());
-    assert!(va["display_text"].as_str().unwrap().contains("https://x.com/$user$/p"));
+    assert!(va["display_text"]
+        .as_str()
+        .unwrap()
+        .contains("https://x.com/$user$/p"));
     assert!(va["display_text"].as_str().unwrap().contains("`$x$`"));
 }
 
@@ -134,10 +162,16 @@ fn grok_fixture_matches_filter_source() {
         .stdout(Stdio::piped())
         .spawn()
         .unwrap();
-    child.stdin.as_mut().unwrap().write_all(req.as_bytes()).unwrap();
+    child
+        .stdin
+        .as_mut()
+        .unwrap()
+        .write_all(req.as_bytes())
+        .unwrap();
     let out = child.wait_with_output().unwrap();
     assert!(out.status.success());
-    let v: serde_json::Value = serde_json::from_str(&String::from_utf8(out.stdout).unwrap()).unwrap();
+    let v: serde_json::Value =
+        serde_json::from_str(&String::from_utf8(out.stdout).unwrap()).unwrap();
     let source = v["exact_source"].as_str().unwrap();
     // Same source through filter
     let mut child = Command::new(&b)
@@ -146,7 +180,12 @@ fn grok_fixture_matches_filter_source() {
         .stdout(Stdio::piped())
         .spawn()
         .unwrap();
-    child.stdin.as_mut().unwrap().write_all(source.as_bytes()).unwrap();
+    child
+        .stdin
+        .as_mut()
+        .unwrap()
+        .write_all(source.as_bytes())
+        .unwrap();
     let fout = child.wait_with_output().unwrap();
     let filtered = String::from_utf8(fout.stdout).unwrap();
     let preview = v["semantic_preview"].as_str().unwrap();

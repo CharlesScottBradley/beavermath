@@ -55,14 +55,13 @@ pub fn process_document(
     } else {
         protected.to_vec()
     };
-    let (math_spans, scan_diags) =
-        discover_strict(input, &merged, &opts.limits).map_err(|e| {
-            DiagnosticV1::new(
-                DiagnosticCode::ProtectedRangeInvalid,
-                DiagnosticSeverity::Error,
-                e.to_string(),
-            )
-        })?;
+    let (math_spans, scan_diags) = discover_strict(input, &merged, &opts.limits).map_err(|e| {
+        DiagnosticV1::new(
+            DiagnosticCode::ProtectedRangeInvalid,
+            DiagnosticSeverity::Error,
+            e.to_string(),
+        )
+    })?;
 
     let partition = build_partition(input.len(), &math_spans);
     let lossless = partition_is_lossless(input, &partition);
@@ -206,7 +205,7 @@ fn artifact_for_span(
         input_exact_utf8: input.to_string(),
         input_sha256: input_sha.to_string(),
         expression_id: format!("expr-{idx}"),
-        expression_byte_range: span.full_range.clone(),
+        expression_byte_range: span.full_range,
         expression_exact_utf8: full.to_string(),
         expression_sha256: expr_sha,
         source_display: source_display(full),
@@ -285,10 +284,7 @@ mod tests {
         assert_eq!(res.expressions.len(), 1);
         assert!(!res.expressions[0].semantic.text.is_empty());
         assert!(!res.expressions[0].alt.text.is_empty());
-        assert_eq!(
-            res.input_sha256,
-            sha256_hex(input)
-        );
+        assert_eq!(res.input_sha256, sha256_hex(input));
         assert_eq!(
             res.expressions[0].expression_sha256,
             sha256_hex(b"$x^2+y^2=z^2$")

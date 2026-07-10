@@ -62,12 +62,7 @@ mod tests {
 
     #[test]
     fn machine_json_has_no_escapes() {
-        let mut ev = AdapterEventV1::new(
-            EventKind::MessageEnd,
-            "m1",
-            1,
-            sha256_hex(b"hello $x$"),
-        );
+        let mut ev = AdapterEventV1::new(EventKind::MessageEnd, "m1", 1, sha256_hex(b"hello $x$"));
         ev.semantic_preview = Some("hello (x)".into());
         let s = ev.to_machine_json();
         assert!(!s.as_bytes().contains(&0x1b));

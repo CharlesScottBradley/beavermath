@@ -42,11 +42,9 @@ pub fn encode_graphics_for_png(
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::escape::scan_machine_channel;
-    use beavermath_core::types::{
-        OutputContextV1, OutputKind, TrustedCapability,
-    };
     use crate::decision::{decide_presentation, graphics_preference_allows};
+    use crate::escape::scan_machine_channel;
+    use beavermath_core::types::{OutputContextV1, OutputKind, TrustedCapability};
 
     #[test]
     fn kitty_path_emits_typed_frame() {
@@ -73,8 +71,7 @@ mod tests {
 
     #[test]
     fn semantic_decision_emits_nothing() {
-        let g = encode_graphics_for_png(b"\x89PNG", PresentationDecision::SemanticOnly, 1)
-            .unwrap();
+        let g = encode_graphics_for_png(b"\x89PNG", PresentationDecision::SemanticOnly, 1).unwrap();
         assert!(g.is_none());
     }
 
@@ -86,7 +83,9 @@ mod tests {
         ctx.trusted_capability = TrustedCapability::None;
         let dec = graphics_preference_allows(Some("kitty"), &ctx);
         assert_eq!(dec, PresentationDecision::SemanticOnly);
-        assert!(encode_graphics_for_png(b"\x89PNG", dec, 1).unwrap().is_none());
+        assert!(encode_graphics_for_png(b"\x89PNG", dec, 1)
+            .unwrap()
+            .is_none());
     }
 
     #[test]
@@ -97,7 +96,9 @@ mod tests {
         ctx.trusted_capability = TrustedCapability::KittyDirect;
         let (dec, _) = decide_presentation(&ctx);
         assert_eq!(dec, PresentationDecision::KittyPng);
-        let g = encode_graphics_for_png(b"\x89PNG", dec, 2).unwrap().unwrap();
+        let g = encode_graphics_for_png(b"\x89PNG", dec, 2)
+            .unwrap()
+            .unwrap();
         // Protocol frames intentionally contain ESC; machine channels must not use this path
         assert!(!scan_machine_channel(&g.bytes).clean);
     }

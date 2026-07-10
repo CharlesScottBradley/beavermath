@@ -7,7 +7,7 @@ pub mod ratex_adapter;
 use beavermath_core::diagnostics::{DiagnosticCode, DiagnosticSeverity, DiagnosticV1};
 use beavermath_core::hash::sha256_hex;
 use beavermath_core::types::{MathArtifactV1, VisualArtifactV1};
-use beavermath_core::{process_document, process_expression, ProcessOptions, DisplayMode};
+use beavermath_core::{process_document, process_expression, DisplayMode, ProcessOptions};
 use ratex_adapter::{render_png, render_svg, RENDERER_VERSION};
 
 pub use cache::{CacheStats, PersistentCache};

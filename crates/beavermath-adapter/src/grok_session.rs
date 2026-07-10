@@ -192,7 +192,10 @@ pub fn write_session_projections(session_dir: &Path) -> Result<PathBuf, String> 
     // Combined viewport file for quick reading
     let mut view = String::from("# BeaverMath session display (source preserved separately)\n\n");
     for (i, p) in presented.iter().enumerate() {
-        view.push_str(&format!("## Assistant message {i}\n\n{}\n\n---\n\n", p.display_text));
+        view.push_str(&format!(
+            "## Assistant message {i}\n\n{}\n\n---\n\n",
+            p.display_text
+        ));
     }
     let view_path = dir.join("VIEWPORT.md");
     std::fs::write(&view_path, view).map_err(|e| e.to_string())?;

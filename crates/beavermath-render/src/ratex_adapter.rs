@@ -57,13 +57,17 @@ pub fn render_svg(tex: &str) -> Result<String, String> {
         return Err(format!("unsupported command {cmd}"));
     }
     let nodes = parse(tex).map_err(|e| format!("parse: {e}"))?;
-    let mut opts = LayoutOptions::default();
-    opts.style = MathStyle::Display;
+    let opts = LayoutOptions {
+        style: MathStyle::Display,
+        ..LayoutOptions::default()
+    };
     let lay = layout(&nodes, &opts);
     let list = to_display_list(&lay);
-    let mut svg_opts = SvgOptions::default();
-    svg_opts.embed_glyphs = true;
-    svg_opts.font_size = 40.0;
+    let svg_opts = SvgOptions {
+        embed_glyphs: true,
+        font_size: 40.0,
+        ..SvgOptions::default()
+    };
     let svg = render_to_svg(&list, &svg_opts);
     // Reject active content
     if svg.contains("<script") || svg.contains("javascript:") || svg.contains("xlink:href") {
@@ -77,8 +81,10 @@ pub fn render_png(tex: &str) -> Result<(Vec<u8>, u32, u32), String> {
         return Err(format!("unsupported command {cmd}"));
     }
     let nodes = parse(tex).map_err(|e| format!("parse: {e}"))?;
-    let mut opts = LayoutOptions::default();
-    opts.style = MathStyle::Display;
+    let opts = LayoutOptions {
+        style: MathStyle::Display,
+        ..LayoutOptions::default()
+    };
     let lay = layout(&nodes, &opts);
     let list = to_display_list(&lay);
     let ro = RenderOptions {
