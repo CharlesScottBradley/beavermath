@@ -33,18 +33,11 @@ impl KittyFrame {
             out.extend_from_slice(chunk);
             out.extend_from_slice(b"\x1b\\");
         }
-        // Validate no forbidden keys
+        // Validate no forbidden keys (file/temp/shm transfer or queries).
         let s = String::from_utf8_lossy(&out);
-        for banned in ["t=f", "t=t", "t=s", "a=d,d=A", "q=1"] {
-            // t=f file, t=t temp, t=s shared memory, mass delete, query
-            if s.contains(banned) && banned != "q=1" {
-                // t=d is fine; check t=f specifically as token
-            }
-        }
         if s.contains(",t=f") || s.contains(",t=t") || s.contains(",t=s") {
             return Err("forbidden transfer mode".into());
         }
-        // Zero query: never emit q=
         if s.contains(",q=") || s.contains("q=1") {
             return Err("queries are forbidden in v1".into());
         }
