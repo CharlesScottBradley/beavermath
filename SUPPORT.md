@@ -1,18 +1,19 @@
-# Support matrix (private 0.1.0 candidate)
+# Support matrix (private 0.1.1 candidate)
 
-## Platforms (logical artifact / CLI)
+## Platforms
 
-| Platform | Build tested | Notes |
-|----------|--------------|-------|
-| macOS aarch64 | yes (dev machine) | Primary lab host |
-| macOS x86_64 | not claimed | |
-| Linux aarch64/x86_64 | CI workflow defined; not fully evidenced here | |
-| Windows | not claimed for terminal pixels | |
+| Platform | Claim | Notes |
+|----------|--------|-------|
+| macOS aarch64 | source + binary (when release assets ship) | Primary build host |
+| macOS x86_64 | source + binary (when release assets ship) | Cross-built with path remapping |
+| Linux x86_64 | source; CI test job | Binary preferred for best cut if strings-clean |
+| Linux aarch64 | source | Not a primary release target yet |
+| Windows | source only | No pixel claims |
 
 ## Terminal presentation
 
-| Destination | v0.1 claim |
-|-------------|------------|
+| Destination | 0.1.x claim |
+|-------------|-------------|
 | Semantic / filter / present / JSON | Supported |
 | Direct Kitty / iTerm2 pixels | Only with trusted capability + direct TTY; zero queries |
 | Apple Terminal / unknown | Text only |
@@ -24,18 +25,25 @@
 | Host | Status |
 |------|--------|
 | CLI oneshot / filter / present | Supported |
-| OMP | Extension O2: custom preview + widget (not body-inline) |
-| OpenCode | Plugin C1: presentation files; bubble rewrite blocked |
+| OMP | O2: custom preview + widget (not body-inline); O3 blocked |
+| OpenCode | Plugin C1 / oneshot; bubble rewrite blocked |
 | Grok Build | Session VIEWPORT + hooks; stock TUI paint blocked |
 | Claude Code / Codex | Oneshot-oriented scripts |
 
-## Installation (private)
+## Installation
 
 ```bash
-git clone git@github.com:CharlesScottBradley/beavermath.git
+git clone https://github.com/CharlesScottBradley/beavermath.git
 cd beavermath
 cargo install --path crates/beavermath-cli --locked
 beavermath present --mode semantic <<< 'The answer is $x^2$.'
 ```
 
-Requires Rust toolchain matching `rust-toolchain.toml` (1.91.1 channel pin).
+Requires Rust matching `rust-toolchain.toml` (1.91.1).
+
+Binary install (when published): download the archive for your arch from GitHub Releases, verify SHA-256 against `docs/RELEASE_DIGESTS.md`, extract, run `./beavermath --version`.
+
+## Reporting
+
+- Security: [SECURITY.md](SECURITY.md)
+- Bugs and claim disputes: GitHub issues after public; private owner channel while private

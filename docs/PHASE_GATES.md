@@ -1,13 +1,24 @@
 # Phase exit-gate ledger
 
-## OMP + OpenCode track (this goal)
+## Publication
+
+| Item | Status | Evidence |
+|------|--------|----------|
+| Path-clean `main` history | **live** | orphan clean tree; full-history lab-path scan 0 |
+| CI fmt/clippy/test/deny | **live** | `.github/workflows/ci.yml` green on recent main |
+| Public visibility | **not flipped** | repo PRIVATE |
+| Next public freeze | **`v0.1.1` planned** | [BEST_PUBLIC_PATH.md](BEST_PUBLIC_PATH.md), [GO_PUBLIC_PLAN.md](GO_PUBLIC_PLAN.md) |
+| Historical private tag `v0.1.0` | **lags main** | not the public freeze; do not open on this tag alone |
+| crates.io | **deferred** | all crates `publish = false` |
+
+## OMP + OpenCode
 
 | Step | Status | Evidence |
 |------|--------|----------|
 | Present spine (IP0) | **live** | `beavermath present`; dual-run + filter match |
 | **O0** OMP SPIKE | **live** | `adapters/omp/SPIKE.md` |
 | **O1** OMP extension present | **live** | `adapters/omp/extension/` + fixture test |
-| **O2** OMP in-session UX | **live (partial)** | custom `beavermath.math-preview` + display; **not** assistant-body inline |
+| **O2** OMP in-session UX | **live (partial)** | custom preview + widget; not assistant-body inline |
 | **O3** true content renderer | **blocked** | no OMP API |
 | **C0** OpenCode SPIKE | **live** | `adapters/opencode/SPIKE.md` |
 | **C1** OpenCode plugin present | **live** | `adapters/opencode/plugin/` + fixture test |
@@ -16,17 +27,17 @@
 
 ## In-chat product bar (global)
 
-See [INCHAT_PRESENTATION.md](INCHAT_PRESENTATION.md). Sidecar/oneshot alone ≠ full bar.  
-OMP O2 = automatic in-session preview (honest partial). OpenCode interactive paint blocked.
+See [INCHAT_PRESENTATION.md](INCHAT_PRESENTATION.md). Sidecar/oneshot alone is not the full bar.  
+OMP O2 is automatic in-session preview (honest partial). OpenCode interactive paint blocked.
 
-## Prior notes
+## Other hosts
 
 | Item | Status |
 |------|--------|
 | Grok stock TUI | blocked (closed binary); `grok-session` VIEWPORT interim |
-| Core ROADMAP 0–7, 10 | pass |
-| Phase 12 publish | **done (GitHub public 0.1.0)** — tag `v0.1.0`, digests [RELEASE_DIGESTS.md](RELEASE_DIGESTS.md); crates.io still deferred |
-| Phase 13 | **scoped** — [PHASE13_SCOPE.md](PHASE13_SCOPE.md); not started. Tracks 13A–D post-v1 protocols; harness bar (Claude/Codex IP3/IP4) is Track H, not 13 |
+| Claude Code / Codex | oneshot-oriented |
+| Core ROADMAP 0–7 | pass (implementation present) |
+| Phase 13 | **scoped, not started** ([PHASE13_SCOPE.md](PHASE13_SCOPE.md)); Track H harness bar is separate |
 
 ## Critical invariants
 

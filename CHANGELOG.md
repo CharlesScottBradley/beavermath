@@ -4,10 +4,27 @@ All notable changes to BeaverMath are documented here.
 Format inspired by [Keep a Changelog](https://keepachangelog.com/).  
 Versioning follows [SemVer](https://semver.org/) once public crates are enabled.
 
-## [0.1.0] — 2026-07-10
+## [Unreleased]
 
-**Status:** public GitHub source + macOS release binaries; crates.io not published (`publish = false`).  
-**Tag:** `v0.1.0`
+### Planned for public cut `0.1.1`
+
+- Simple install-first README and honest status tables
+- Doc ledger repair (no false “already public” claims while private)
+- CLI panic polish on JSON print paths; filter trailing newline
+- Repo governance: Dependabot, CONTRIBUTING, issue templates
+- Remapped multi-arch release binaries + path-scrubbed SBOM + digests
+- Tag `v0.1.1` freeze matching HEAD (not lagging `v0.1.0`)
+
+### Later (not 0.1.1 claims)
+
+- crates.io, Linux/Windows archives as needed, signatures/attestations
+- Phase 13: probe / Sixel / SSH-tmux graphics / repair locales ([docs/PHASE13_SCOPE.md](docs/PHASE13_SCOPE.md))
+- Harness product bar: Claude IP3, Codex IP4, Grok P1, OMP O3 (Track H)
+
+## [0.1.0] — 2026-07-10 (private historical cut)
+
+**Status:** private candidate tag. Not the public freeze (main moved after tag).  
+**Tag:** `v0.1.0` (lags current main; use `v0.1.1` for public)
 
 ### Added
 
@@ -17,7 +34,8 @@ Versioning follows [SemVer](https://semver.org/) once public crates are enabled.
 - CLI: `render`, `filter`, `doctor`, `cache`, `repair`, `hook`, `present`, `grok-session`
 - Terminal policy: semantic-first; Kitty/iTerm2 typed frames only with trusted capability (zero queries)
 - Harness scaffolds: OMP extension (O2 partial), OpenCode plugin (C1), Grok session VIEWPORT, oneshot wrappers
-- Schemas, corpus fixtures, CI workflow skeleton, dual MIT/Apache licenses
+- Schemas, corpus fixtures, CI workflow, dual MIT/Apache licenses
+- Path-clean history rewrite; path-scrubbed SBOM; remapped macOS binaries (private release assets)
 
 ### Known limitations (not v1.0.0 claims)
 
@@ -25,17 +43,13 @@ Versioning follows [SemVer](https://semver.org/) once public crates are enabled.
 - OMP: no true assistant-body content renderer (custom preview only)
 - OpenCode: no safe in-bubble rewrite without source poison risk
 - Claude Code / Codex: oneshot-oriented; not full interactive in-chat
-- Multi-arch release archives, SBOM automation, signatures/attestations: not yet produced
-- Live hardware matrix for every emulator/a11y tool: not fully claimed
+- crates.io not published (`publish = false`)
+- Linux/Windows official binaries not required for source install
+- Live hardware matrix for every emulator/a11y tool: not claimed
+- Transitive `ttf-parser` unmaintained advisory ignored via RaTeX (`RUSTSEC-2026-0192`, documented in `deny.toml`)
 
 ### Security
 
 - Core offline: no telemetry or hidden network from present/hook paths
 - Machine channels refuse ESC/CSI/OSC graphics protocol
 - Persistent cache opt-in; no raw source in cache keys by design
-
-## [Unreleased]
-
-- Phase 12 residual: crates.io, Linux/Windows archives, signatures (optional; separate from Phase 13)
-- Phase 13 scoped: post-v1 probe / Sixel / SSH-tmux graphics / repair locales ([docs/PHASE13_SCOPE.md](docs/PHASE13_SCOPE.md)); no v1 claim change
-- Harness product bar (Claude IP3, Codex IP4, Grok P1, OMP O3): Track H, not Phase 13

@@ -164,6 +164,27 @@ enum ModeArg {
     Block,
 }
 
+fn print_json(value: &impl serde::Serialize) -> Result<(), ExitStatus> {
+    match serde_json::to_string_pretty(value) {
+        Ok(s) => {
+            println!("{s}");
+            Ok(())
+        }
+        Err(e) => {
+            eprintln!("beavermath[json]: {e}");
+            Err(ExitStatus::Io)
+        }
+    }
+}
+
+fn print_text_line(s: &str) {
+    if s.ends_with('\n') {
+        print!("{s}");
+    } else {
+        println!("{s}");
+    }
+}
+
 fn main() -> ExitCode {
     let cli = Cli::parse();
     match run(cli) {
@@ -249,7 +270,7 @@ fn run(cli: Cli) -> Result<ExitStatus, ExitStatus> {
                 );
                 return Err(ExitStatus::Internal);
             }
-            print!("{safe}");
+            print_text_line(&safe);
             let _ = io::stdout().flush();
             Ok(ExitStatus::Success)
         }
@@ -278,7 +299,7 @@ fn run(cli: Cli) -> Result<ExitStatus, ExitStatus> {
                 "auto_protect": true,
                 "limits": beavermath_core::LimitsV1::default(),
             });
-            println!("{}", serde_json::to_string_pretty(&report).unwrap());
+            print_json(&report)?;
             Ok(ExitStatus::Success)
         }
         Commands::Cache { action } => match action {
@@ -289,7 +310,7 @@ fn run(cli: Cli) -> Result<ExitStatus, ExitStatus> {
                 } else {
                     PersistentCache::disabled()
                 };
-                println!("{}", serde_json::to_string_pretty(&cache.stats()).unwrap());
+                print_json(&cache.stats())?;
                 Ok(ExitStatus::Success)
             }
             CacheCmd::Clear { path } => {
@@ -327,7 +348,7 @@ fn run(cli: Cli) -> Result<ExitStatus, ExitStatus> {
                                     "rendered_semantic": art.semantic.text,
                                     "original_sha256": prop.original_sha256,
                                 });
-                                println!("{}", serde_json::to_string_pretty(&out).unwrap());
+                                print_json(&out)?;
                             }
                             Err(d) => {
                                 eprintln!("{}", d.human_line());
@@ -335,9 +356,12 @@ fn run(cli: Cli) -> Result<ExitStatus, ExitStatus> {
                             }
                         }
                     } else {
-                        println!("{}", serde_json::to_string_pretty(&prop).unwrap());
+                        print_json(&prop)?;
                     }
-                    assert_eq!(prop.original_sha256, sha256_hex(input.as_bytes()));
+                    if prop.original_sha256 != sha256_hex(input.as_bytes()) {
+                        eprintln!("beavermath[repair]: original digest mismatch");
+                        return Err(ExitStatus::Io);
+                    }
                     Ok(ExitStatus::Success)
                 }
                 Err(d) => {

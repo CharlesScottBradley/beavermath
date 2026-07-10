@@ -2,7 +2,7 @@
 
 **Status:** scoped (not started)  
 **Date:** 2026-07-10  
-**Depends on:** public `v0.1.0` (Phase 12 GitHub cut complete)  
+**Depends on:** public `0.1.x` cut complete (planned `v0.1.1`; not the lagging private `v0.1.0` tag alone)  
 **Canonical phase text:** [ROADMAP.md](../ROADMAP.md) § Phase 13  
 **PRD:** BM-013 (safe probe), BM-016 (Sixel), FR-036 / FR-040 / FR-062, open post-v1 decisions  
 **Does not delay or redefine:** supported `0.1.x` / future `1.0.0` claims
@@ -291,4 +291,4 @@ Pick one:
 
 ---
 
-*Scoped after public 0.1.0 flip. Execution starts only after entry criteria + sequence decision.*
+*Scoped after public 0.1.x flip. Execution starts only after entry criteria + sequence decision.*

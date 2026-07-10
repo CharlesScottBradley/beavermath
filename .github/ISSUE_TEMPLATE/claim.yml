@@ -1,0 +1,25 @@
+name: Docs or claim issue
+description: README/SUPPORT claim looks wrong or overstated
+title: "[claim] "
+labels: ["docs"]
+body:
+  - type: textarea
+    id: claim
+    attributes:
+      label: Claim text
+      description: Quote the claim and file path
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it is wrong or overstated
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Command output, harness version, platform
+    validations:
+      required: true
