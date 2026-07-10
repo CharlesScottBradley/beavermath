@@ -1,12 +1,10 @@
-# Builds release-style binaries for digest recording (private).
+# Optional multi-target release builds with the same path hygiene as local freeze.
+# Manual only: do not auto-build on tag push (avoids unclean Actions artifacts).
 # Does not publish crates or flip repo visibility.
 name: release-prep
 
 on:
   workflow_dispatch:
-  push:
-    tags:
-      - "v*"
 
 jobs:
   build:
@@ -26,8 +24,25 @@ jobs:
         with:
           toolchain: 1.91.1
           targets: ${{ matrix.target }}
-      - name: Build release CLI
-        run: cargo build --locked --release -p beavermath-cli --target ${{ matrix.target }}
+      - name: Build release CLI (remapped + stripped)
+        env:
+          CARGO_TARGET_DIR: ${{ github.workspace }}/target
+        run: |
+          set -euo pipefail
+          REPO="${{ github.workspace }}"
+          export RUSTFLAGS="--remap-path-prefix=${REPO}=/src/beavermath --remap-path-prefix=${HOME}/.cargo=/cargo -C strip=symbols -C debuginfo=0"
+          cargo build --locked --release -p beavermath-cli --target ${{ matrix.target }}
+      - name: Path hygiene strings scan
+        run: |
+          set -euo pipefail
+          BIN=target/${{ matrix.target }}/release/beavermath
+          if [ -f "${BIN}.exe" ]; then BIN="${BIN}.exe"; fi
+          if [ ! -f "$BIN" ]; then echo "missing binary"; exit 1; fi
+          if strings "$BIN" | grep -E '/Users/|Desktop/beavermath|/home/runner/work/beavermath' ; then
+            echo "path leak in binary"
+            exit 1
+          fi
+          echo "strings scan clean"
       - name: Checksum
         run: |
           BIN=target/${{ matrix.target }}/release/beavermath

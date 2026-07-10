@@ -46,3 +46,18 @@ OMP O2 is automatic in-session preview (honest partial). OpenCode interactive pa
 3. Bare ASCII not auto-math.  
 4. Machine JSON zero ESC.  
 5. Fail-open host extensions.
+
+## Wave F pre-flip governance (E7 residual)
+
+Private free accounts cannot set branch protection (403). Do these **before** or **immediately when** flipping public:
+
+| Control | Status now | Action at flip |
+|---------|------------|----------------|
+| Branch protection + required CI | blocked private free | enable on public `main` |
+| Secret scanning / push protection | check Settings | enable |
+| Dependabot alerts | config present | confirm enabled |
+| Security Advisories | not yet | enable + update SECURITY.md |
+| Tag protection `v*` | optional | enable if available |
+
+Files already in tree: `.github/dependabot.yml`, `CONTRIBUTING.md`, issue templates.
+
