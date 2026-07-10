@@ -7,7 +7,7 @@
 | Path-clean `main` history | **live** | orphan clean tree; lab-path scan 0 |
 | CI fmt/clippy/test/deny | **live** | green on freeze tip `fe4603d` |
 | Freeze tag | **`v0.1.1`** | `git rev-list -n1 v0.1.1` equals HEAD at freeze |
-| Private release assets | **live** | macOS aarch64+x86_64 remapped; SBOM scrubbed |
+| Release assets | **live (public)** | macOS aarch64+x86_64 remapped; SBOM scrubbed |
 | Public visibility | **public** | flipped 2026-07-10 |
 | crates.io | **deferred** | all crates `publish = false` |
 
@@ -15,10 +15,10 @@
 
 | Control | Status | Action |
 |---------|--------|--------|
-| Branch protection + required CI | blocked on private free tier | enable when public |
-| Secret scanning / push protection | check Settings | enable at flip |
+| Branch protection + required CI | **live** | required checks on `main` |
+| Secret scanning / push protection | check Settings | enable if not already |
 | Dependabot config | **in tree** | confirm alerts enabled |
-| Security Advisories | pending public | enable at flip |
+| Security Advisories | prefer enabled | Settings → Code security |
 | CONTRIBUTING + issue templates | **in tree** | live |
 
 ## OMP + OpenCode

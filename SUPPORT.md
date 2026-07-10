@@ -1,4 +1,4 @@
-# Support matrix (private 0.1.1 candidate)
+# Support matrix (public 0.1.1)
 
 ## Platforms
 
@@ -46,4 +46,4 @@ Binary install (when published): download the archive for your arch from GitHub 
 ## Reporting
 
 - Security: [SECURITY.md](SECURITY.md)
-- Bugs and claim disputes: GitHub issues after public; private owner channel while private
+- Bugs and claim disputes: GitHub issues (use claim template for overstated docs)

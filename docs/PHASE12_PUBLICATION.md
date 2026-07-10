@@ -1,42 +1,29 @@
 # Phase 12: publication checklist
 
-**Status:** **`v0.1.1` public** (GitHub source + release assets). crates.io still deferred.  
-**Canonical plans:** [BEST_PUBLIC_PATH.md](BEST_PUBLIC_PATH.md), [GO_PUBLIC_PLAN.md](GO_PUBLIC_PLAN.md).
+**Status:** **public `v0.1.1`** on GitHub (source + macOS release assets). crates.io deferred.
 
-## Freeze facts
+## Public cut
 
 | Field | Value |
 |-------|--------|
 | Tag | `v0.1.1` |
-| Verify | `git rev-list -n1 v0.1.1` equals freeze tip |
-| Workspace version | `0.1.1` |
 | Visibility | PUBLIC |
 | crates.io | Deferred (`publish = false`) |
 | Digests | [RELEASE_DIGESTS.md](RELEASE_DIGESTS.md) |
-| Assets | macOS aarch64 + x86_64 remapped/stripped; SBOM path-scrubbed |
+| Plans | [BEST_PUBLIC_PATH.md](BEST_PUBLIC_PATH.md) |
 
-## Done for freeze
+## Completed
 
-- [x] Simple README + honest SUPPORT/CHANGELOG/SECURITY/PHASE_GATES
-- [x] Path-clean history
-- [x] CI green on freeze tip
-- [x] Remapped binaries + digests + private GitHub Release
-- [x] Dependabot + CONTRIBUTING + issue templates
-- [x] release-prep manual + path hygiene
+- [x] Path-clean history and remapped binaries
+- [x] Simple README and honest ledgers
+- [x] CI green; Dependabot/CONTRIBUTING/templates
+- [x] Visibility public
+- [x] Branch protection with required CI checks
+- [x] Clean-clone smoke (see PUBLIC_SMOKE.md)
 
-## Wave F (public flip) remaining
+## Remaining follow-ups
 
-1. Explicit maintainer approve (received when executing flip)
-2. Set visibility public
-3. Enable Security Advisories + secret scanning as available
-4. Branch protection + required CI (available when public)
-5. README status line to public 0.1.1
-6. Clean-machine smoke recorded
-
-## Known limitations (claims)
-
-- Not full multi-OS 1.0 matrix
-- OMP O2 partial; O3 blocked
-- OpenCode / Grok / Claude / Codex not full in-chat body paint
-- crates.io deferred
-- `RUSTSEC-2026-0192` ttf-parser via RaTeX documented ignore
+- Secret scanning / Security Advisories if not fully enabled via API
+- Linux binary optional
+- crates.io later
+- Track H / Phase 13 unchanged
