@@ -89,6 +89,7 @@ Terminal graphics protocols are documented by [Kitty](https://sw.kovidgoyal.net/
 - [Phase exit-gate ledger](docs/PHASE_GATES.md), fixture vs live honesty.
 - [Phase 12 publication](docs/PHASE12_PUBLICATION.md), candidate freeze, digests, public flip checklist.
 - [Publish roadmap](docs/PUBLISH_ROADMAP.md), ordered R1/R2/R3 stages, sanitize gates, flip sequence.
+- [Go-public plan](docs/GO_PUBLIC_PLAN.md), freeze, README target, flip sequence for public 0.1.1.
 - [Changelog](CHANGELOG.md) · [Security](SECURITY.md) · [Support](SUPPORT.md) · [Third-party](THIRD_PARTY.md)
 
 ## Install (0.1.0)

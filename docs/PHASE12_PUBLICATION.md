@@ -1,46 +1,53 @@
-# Phase 12: Public 0.1.0 publication
+# Phase 12: publication checklist
 
-**Status:** **executing / completed for GitHub public 0.1.0** (see checklist below)
+**Status:** private candidate; **public flip NOT done**.  
+**Next public cut:** **`v0.1.1`** per [GO_PUBLIC_PLAN.md](GO_PUBLIC_PLAN.md).  
+**Do not** treat the earlier private `v0.1.0` tag as the public freeze: main moved (CI polish + honesty docs) after that tag.
 
-## Approved cut
+## Current facts
 
 | Field | Value |
 |-------|--------|
-| Version | **0.1.0** (public pre-approved) |
-| Scope | Source + macOS binaries + SBOM; not full multi-OS 1.0.0 matrix |
+| Visibility | **PRIVATE** |
 | crates.io | Deferred (`publish = false`) |
-| Public flip | **Approved** by maintainer 2026-07-10 |
+| Path-clean `main` history | yes (orphan clean tree) |
+| CI on recent main | green after fmt/clippy fix |
+| Tag lag | `v0.1.0` behind HEAD; re-freeze required |
+
+## Why 0.1.1
+
+1. Tag must equal freeze commit must equal binary build source.  
+2. HEAD includes CI and honesty fixes after `v0.1.0`.  
+3. Shipping public on a lagging tag is a freeze integrity failure.
 
 ## Digests
 
-See [RELEASE_DIGESTS.md](RELEASE_DIGESTS.md).
+See [RELEASE_DIGESTS.md](RELEASE_DIGESTS.md). Rewrite that file when `v0.1.1` binaries are built.
 
-## Sequence
+## Controlled sequence (summary)
 
-1. Freeze digests + SBOM + deny.toml in git  
-2. Tag `v0.1.0` on freeze commit  
-3. Push tag to origin  
-4. Set repository visibility **public**  
-5. Create GitHub Release `v0.1.0` attaching **exact** prebuilt tar.gz + SHA256SUMS + SBOM (no rebuild)  
-6. Post-public smoke: clone + install from cargo path / download binary  
+Full steps: [GO_PUBLIC_PLAN.md](GO_PUBLIC_PLAN.md).
 
-## Known limitations (public README-aligned)
+1. Docs: simple README, CHANGELOG 0.1.1, SUPPORT, honest adapter status.  
+2. Local + GitHub CI green on freeze SHA.  
+3. Rebuild path-remapped macOS binaries; scrub SBOM; strings scan.  
+4. Commit digests; tag `v0.1.1`.  
+5. Explicit maintainer **approve public**.  
+6. GitHub Release attach assets; re-scan.  
+7. Visibility public.  
+8. Security Advisories + clean-machine smoke.  
 
-- Not full Phase 10 multi-arch RC evidence (Linux/Windows binaries not in this release)  
-- Grok stock TUI / OpenCode bubble / OMP body-inline incomplete  
-- Transitive `ttf-parser` unmaintained (RUSTSEC-2026-0192) via RaTeX; denied ignore documented  
+## Known limitations (public claims)
 
-## Blockers closed for this cut
+- Not full multi-OS 1.0 matrix  
+- OMP O2 partial; O3 blocked  
+- OpenCode / Grok / Claude / Codex not full in-chat body paint  
+- crates.io deferred  
+- `RUSTSEC-2026-0192` ttf-parser via RaTeX documented ignore  
 
-- [x] Candidate docs + CHANGELOG/SECURITY/SUPPORT  
-- [x] Dual macOS release archives + SHA-256  
-- [x] SBOM (CycloneDX JSON for CLI package)  
-- [x] cargo-deny config (licenses/sources; advisory ignore documented)  
-- [x] Maintainer approve public 0.1.0  
+## Follow-ups after public
 
-## Follow-ups
-
-- Linux binary via CI; Windows if claimed  
+- Linux binary via CI  
 - crates.io when ready  
-- Signatures/attestations (cosign / GH attestations)  
+- Signatures/attestations  
 - Phase 13 post-v1 protocols  
