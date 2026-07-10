@@ -4,7 +4,7 @@ Terminal math for agent harnesses. Strict LaTeX in, readable text out, source un
 
 ## Status
 
-**Private 0.1.1 candidate.** Repository visibility is still private until the public flip. Crates are not on crates.io (`publish = false`). No Sixel, active probing, or SSH/tmux graphics as supported features.
+**Public 0.1.1.** Source and macOS release binaries on GitHub. Crates are not on crates.io (`publish = false`). No Sixel, active probing, or SSH/tmux graphics as supported features.
 
 ## What it does
 

@@ -4,22 +4,15 @@
 
 | Version | Support |
 |---------|---------|
-| `0.1.x` private candidate | Active development; report privately |
-| Public `0.1.x` / later | Opens when GitHub visibility is public and Security Advisories are enabled |
+| Public `0.1.1` / `0.1.x` | Active; use GitHub Security Advisories |
 
 ## Reporting a vulnerability
 
 **Do not open a public issue for security problems.**
 
-While the repository is private:
-
-1. Contact the repository owner (`CharlesScottBradley` on GitHub) via a private channel.
+1. Prefer **GitHub Security Advisories** / private vulnerability reporting on this repository.
 2. Include: commit SHA, component (`core` / `cli` / adapter), reproduction, impact.
-
-After the public flip:
-
-1. Prefer GitHub Security Advisories / private vulnerability reporting on the repository.
-2. Keep the same reproduction details.
+3. If advisories are unavailable, contact the owner (`CharlesScottBradley`) privately.
 
 Allow a reasonable window for a fix before any public disclosure.
 

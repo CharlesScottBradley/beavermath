@@ -6,20 +6,29 @@ Versioning follows [SemVer](https://semver.org/) once public crates are enabled.
 
 ## [Unreleased]
 
-### Planned for public cut `0.1.1`
-
-- Simple install-first README and honest status tables
-- Doc ledger repair (no false “already public” claims while private)
-- CLI panic polish on JSON print paths; filter trailing newline
-- Repo governance: Dependabot, CONTRIBUTING, issue templates
-- Remapped multi-arch release binaries + path-scrubbed SBOM + digests
-- Tag `v0.1.1` freeze matching HEAD (not lagging `v0.1.0`)
-
 ### Later (not 0.1.1 claims)
+
 
 - crates.io, Linux/Windows archives as needed, signatures/attestations
 - Phase 13: probe / Sixel / SSH-tmux graphics / repair locales ([docs/PHASE13_SCOPE.md](docs/PHASE13_SCOPE.md))
 - Harness product bar: Claude IP3, Codex IP4, Grok P1, OMP O3 (Track H)
+
+## [0.1.1] - 2026-07-10
+
+**Status:** public GitHub source + macOS release binaries; crates.io not published.
+**Tag:** `v0.1.1`
+
+### Added
+
+- Simple install-first README and honest status tables
+- Path-clean history for public cut
+- CLI JSON/newline polish; production panic cleanup
+- Dependabot, CONTRIBUTING, issue templates
+- Remapped macOS aarch64/x86_64 binaries + path-scrubbed SBOM + digests
+
+### Known limitations
+
+Same harness partials as 0.1.0; no crates.io; no Sixel/probe/SSH-tmux graphics claims.
 
 ## [0.1.0] - 2026-07-10 (private historical cut)
 

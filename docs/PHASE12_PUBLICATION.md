@@ -1,6 +1,6 @@
 # Phase 12: publication checklist
 
-**Status:** private freeze **`v0.1.1` complete**; public flip is a separate Wave F step.  
+**Status:** **`v0.1.1` public** (GitHub source + release assets). crates.io still deferred.  
 **Canonical plans:** [BEST_PUBLIC_PATH.md](BEST_PUBLIC_PATH.md), [GO_PUBLIC_PLAN.md](GO_PUBLIC_PLAN.md).
 
 ## Freeze facts
@@ -10,7 +10,7 @@
 | Tag | `v0.1.1` |
 | Verify | `git rev-list -n1 v0.1.1` equals freeze tip |
 | Workspace version | `0.1.1` |
-| Visibility at freeze | PRIVATE |
+| Visibility | PUBLIC |
 | crates.io | Deferred (`publish = false`) |
 | Digests | [RELEASE_DIGESTS.md](RELEASE_DIGESTS.md) |
 | Assets | macOS aarch64 + x86_64 remapped/stripped; SBOM path-scrubbed |

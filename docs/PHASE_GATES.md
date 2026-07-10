@@ -8,7 +8,7 @@
 | CI fmt/clippy/test/deny | **live** | green on freeze tip `fe4603d` |
 | Freeze tag | **`v0.1.1`** | `git rev-list -n1 v0.1.1` equals HEAD at freeze |
 | Private release assets | **live** | macOS aarch64+x86_64 remapped; SBOM scrubbed |
-| Public visibility | **not flipped** until Wave F | repo PRIVATE at prep time |
+| Public visibility | **public** | flipped 2026-07-10 |
 | crates.io | **deferred** | all crates `publish = false` |
 
 ## Wave F pre-flip governance
