@@ -5,7 +5,7 @@
 | Artifact | Value |
 |----------|--------|
 | Git tag | `v0.1.1` |
-| Git commit (tag target) | `f52a421aa2efcd198d3f189e0fabf890ba11b65e` |
+| Git commit (tag target) | `5e54f35e2c55313b71992a4573192f572e7c6bef` |
 | `Cargo.lock` SHA-256 | `918e6a8d46f29e79630ec99be4f183c29dffac1b25a54f2b7233d303d9ef268f` |
 | Workspace version | `0.1.1` |
 | Toolchain | `1.91.1` |
