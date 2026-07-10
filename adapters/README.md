@@ -6,7 +6,7 @@ Live integration track: [docs/HARNESS_COMPAT_PLAN.md](../docs/HARNESS_COMPAT_PLA
 |-----------|------|---------------------|--------|
 | shared | all | IP0 `present` | **live** (`beavermath present`) |
 | `grok-build/` | Grok Build | IP1 | **blocked** host paint; INCHAT.md + contract |
-| `omp/` | OMP | IP2 | **API-blocked**; present ready |
+| `omp/` | OMP | IP2 | **O2 live (partial)** custom preview/widget; O3 body rewrite **API-blocked** |
 | `claude-code/` | Claude Code | IP3 | **oneshot-only** |
 | `codex/` | Codex | IP4 | **oneshot-only** |
 | `opencode/` | OpenCode | IP5 | **oneshot-only** |

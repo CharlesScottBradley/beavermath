@@ -2,7 +2,7 @@
 
 Adaptive, source-preserving terminal math rendering for agent harnesses.
 
-> **Status:** public **0.1.0** ([CHANGELOG](CHANGELOG.md), tag `v0.1.0`). Crates remain unpublished on crates.io (`publish = false`); install from source or [GitHub Releases](https://github.com/CharlesScottBradley/beavermath/releases). No Sixel, active probing, or SSH/tmux graphics as supported features.
+> **Status:** private **0.1.0 candidate** (tag `v0.1.0` prepared; repo visibility still **PRIVATE** until re-open). Crates remain unpublished on crates.io (`publish = false`). No Sixel, active probing, or SSH/tmux graphics as supported features.
 
 BeaverMath will turn explicitly delimited LaTeX into readable terminal output without changing the canonical source. A model writes ordinary `$...$`, `$$...$$`, `\(...\)`, or `\[...\]`; the host adapter handles rendering automatically after content completes. No model tool call or prompt-specific rendering instruction is required.
 
