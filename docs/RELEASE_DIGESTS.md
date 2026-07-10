@@ -2,10 +2,13 @@
 
 ## Source freeze
 
+Verify with `git rev-list -n1 v0.1.1` (must equal tag target).
+
+
 | Artifact | Value |
 |----------|--------|
 | Git tag | `v0.1.1` |
-| Git commit (tag target) | `711adf45204dc6473872987d589bf2ddce696b9f` |
+| Git commit (tag target) | set by tag `v0.1.1`; run `git rev-list -n1 v0.1.1` |
 | `Cargo.lock` SHA-256 | `918e6a8d46f29e79630ec99be4f183c29dffac1b25a54f2b7233d303d9ef268f` |
 | Workspace version | `0.1.1` |
 | Toolchain | `1.91.1` |
