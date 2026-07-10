@@ -1,4 +1,7 @@
-# BeaverMath publish roadmap
+# BeaverMath publish roadmap (archived)
+
+> **Archived planning notes.** Canonical public prep is [BEST_PUBLIC_PATH.md](BEST_PUBLIC_PATH.md) and [GO_PUBLIC_PLAN.md](GO_PUBLIC_PLAN.md) for **v0.1.1**. Do not follow v0.1.0 tag commands in this file.
+
 
 **Purpose:** ordered plan to take the private candidate to a defensible public release.  
 **Status:** living plan (2026-07-10). Does **not** flip visibility or publish crates by itself.  
