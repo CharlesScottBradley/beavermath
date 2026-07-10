@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://beavermath.dev/schemas/render_request_v1.json",
+  "title": "RenderRequestV1",
+  "type": "object",
+  "required": ["schema_version", "input"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "input": { "type": "string" },
+    "protected_ranges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["start", "end"],
+        "properties": {
+          "start": { "type": "integer", "minimum": 0 },
+          "end": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "direct_mode": { "type": "string", "enum": ["inline", "block"] },
+    "request_png": { "type": "boolean" },
+    "request_svg": { "type": "boolean" },
+    "consent_repair": { "type": "boolean" },
+    "client_id": { "type": "string" }
+  },
+  "additionalProperties": true
+}

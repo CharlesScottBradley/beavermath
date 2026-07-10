@@ -1,0 +1,9 @@
+{
+  "schema_version": "1",
+  "kind": "message_end",
+  "message_id": "grok-turn-1",
+  "revision": 1,
+  "content": "From the identity we have $x^2+y^2=z^2$. URL https://x.com/$user$/p stays. Code `$x$` stays. Real $y$.",
+  "session_id": "spike-session",
+  "write_preview": true
+}

@@ -1,0 +1,5 @@
+sqrt(x^2 + 1) without delimiters
+x^2 + y^2 = z^2 in prose
+price is 12 dollars not math
+code uses variable x_i in text
+visit https://example.com/path without any dollar pairs

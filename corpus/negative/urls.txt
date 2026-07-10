@@ -1,0 +1,3 @@
+see https://x.com/$user$/profile and keep dollars in path
+visit http://example.com/a$b$c/end of url
+ftp://files.test/$id$/download next

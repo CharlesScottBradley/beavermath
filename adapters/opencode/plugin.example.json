@@ -1,0 +1,6 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": [
+    "file://${BEAVERMATH_ROOT}/adapters/opencode/plugin"
+  ]
+}

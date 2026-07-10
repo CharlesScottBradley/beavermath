@@ -1,0 +1,7 @@
+\input{/etc/passwd}
+\write18{id}
+\usepackage{tikz}
+\href{http://evil.example}{x}
+\includegraphics{x.png}
+\catcode`\$=12
+\def\foo{bar}

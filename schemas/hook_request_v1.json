@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://beavermath.dev/schemas/hook_request_v1.json",
+  "title": "HookRequestV1",
+  "type": "object",
+  "required": ["kind", "message_id"],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "kind": { "type": "string" },
+    "message_id": { "type": "string" },
+    "revision": { "type": "integer", "minimum": 0 },
+    "content": { "type": "string" },
+    "session_id": { "type": "string" },
+    "write_preview": { "type": "boolean" },
+    "preview_dir": { "type": "string" }
+  },
+  "additionalProperties": true
+}

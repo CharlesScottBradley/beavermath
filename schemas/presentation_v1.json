@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://beavermath.dev/schemas/presentation_v1.json",
+  "title": "PresentationV1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "exact_source",
+    "content_sha256",
+    "display_text",
+    "mode",
+    "spans",
+    "config_sha256",
+    "beavermath_version"
+  ],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "exact_source": { "type": "string" },
+    "content_sha256": { "type": "string", "minLength": 64, "maxLength": 64 },
+    "display_text": { "type": "string" },
+    "mode": { "type": "string", "enum": ["semantic", "unicode", "pixel_ref"] },
+    "spans": { "type": "array" },
+    "artifacts": { "type": "array" },
+    "config_sha256": { "type": "string" },
+    "beavermath_version": { "type": "string" }
+  },
+  "additionalProperties": true
+}

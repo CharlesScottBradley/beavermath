@@ -1,0 +1,5 @@
+before
+```math
+x+1
+```
+after

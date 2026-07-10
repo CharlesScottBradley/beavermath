@@ -1,0 +1,1 @@
+c8de49cdb45569ee0af21c884a529f670ce348e9dab63e81ed0e09d5bbec9a65  docs/release/sbom-beavermath-cli.cdx.json

@@ -1,0 +1,14 @@
+{
+  "name": "beavermath-omp-extension",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "BeaverMath automatic math presentation for OMP (O1–O2)",
+  "omp": {
+    "extensions": ["./index.js"]
+  },
+  "pi": {
+    "extensions": ["./index.js"]
+  },
+  "main": "index.js"
+}

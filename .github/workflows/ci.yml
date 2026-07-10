@@ -1,0 +1,34 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: 1.91.1
+          components: rustfmt, clippy
+      - name: Format
+        run: cargo fmt --all -- --check
+      - name: Build locked
+        run: cargo build --locked --workspace
+      - name: Test locked
+        run: cargo test --locked --workspace
+      - name: Clippy
+        run: cargo clippy --locked --workspace -- -D warnings
+      - name: License expression
+        run: |
+          grep -q 'MIT OR Apache-2.0' Cargo.toml
+      - name: Install cargo-deny
+        run: cargo install cargo-deny --locked
+      - name: cargo deny
+        run: cargo deny check

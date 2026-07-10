@@ -1,0 +1,33 @@
+# Rust build output
+target/
+debug/
+**/*.rs.bk
+*.pdb
+**/mutants.out*/
+rustc-ice-*.txt
+
+# Operating-system and editor state
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~
+
+# Local secrets and environment
+.env
+.env.*
+!.env.example
+
+# Local profiling and coverage
+coverage/
+profraw/
+*.profraw
+flamegraph.svg
+
+# Local BeaverMath runtime state
+.beavermath-cache/
+
+# Local release build staging (artifacts attach via GitHub Release)
+dist/
+**/beavermath-*.cdx.json
+!docs/release/**

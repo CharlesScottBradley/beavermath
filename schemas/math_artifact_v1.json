@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://beavermath.dev/schemas/math_artifact_v1.json",
+  "title": "MathArtifactV1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "input_exact_utf8",
+    "input_sha256",
+    "expression_id",
+    "expression_byte_range",
+    "expression_exact_utf8",
+    "expression_sha256",
+    "source_display",
+    "discovery",
+    "parse",
+    "semantic",
+    "alt",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "input_exact_utf8": { "type": "string" },
+    "input_sha256": { "type": "string", "minLength": 64, "maxLength": 64 },
+    "expression_id": { "type": "string" },
+    "expression_exact_utf8": { "type": "string" },
+    "expression_sha256": { "type": "string", "minLength": 64, "maxLength": 64 },
+    "source_display": { "type": "string" },
+    "discovery": {
+      "type": "string",
+      "enum": ["explicit", "direct_expression", "repair_proposal"]
+    },
+    "semantic": {
+      "type": "object",
+      "required": ["text", "locale", "status"],
+      "properties": {
+        "text": { "type": "string" },
+        "locale": { "type": "string" },
+        "status": { "type": "string" }
+      }
+    },
+    "alt": {
+      "type": "object",
+      "required": ["text", "status"],
+      "properties": {
+        "text": { "type": "string" },
+        "status": { "type": "string" }
+      }
+    }
+  },
+  "additionalProperties": true
+}
