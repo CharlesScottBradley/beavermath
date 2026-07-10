@@ -6,10 +6,10 @@
 
 Related:
 
-- [PUBLISH_ROADMAP.md](PUBLISH_ROADMAP.md)  -  R1/R2/R3 stages, history rules  
-- [PHASE12_PUBLICATION.md](PHASE12_PUBLICATION.md)  -  freeze / flip checklist  
-- [RELEASE_DIGESTS.md](RELEASE_DIGESTS.md)  -  hashes  
-- [PHASE_GATES.md](PHASE_GATES.md)  -  harness honesty  
+- [PUBLISH_ROADMAP.md](PUBLISH_ROADMAP.md): R1/R2/R3 stages, history rules  
+- [PHASE12_PUBLICATION.md](PHASE12_PUBLICATION.md): freeze / flip checklist  
+- [RELEASE_DIGESTS.md](RELEASE_DIGESTS.md): hashes  
+- [PHASE_GATES.md](PHASE_GATES.md): harness honesty  
 
 ---
 
@@ -81,8 +81,7 @@ Terminal math for agent harnesses. Strict LaTeX in, readable text out, source un
 Models write `$...$` / `$$...$$` / `\(...\)` / `\[...\]`. BeaverMath turns completed text into:
 
 - **semantic** linear text (default)
-- optional **unicode** / **ascii**
-- optional **PNG/SVG** when you ask for artifacts
+- optional **unicode** / **ascii**: optional **PNG/SVG** when you ask for artifacts
 - optional **Kitty / iTerm2** pixels only with trusted capability (no terminal probing)
 
 Exact source bytes and SHA-256 digests stay authoritative. Bare ASCII is not auto-math. Repair is opt-in.
@@ -146,7 +145,7 @@ Machine JSON (hooks / present) contains no terminal escape sequences.
 
 ## License
 
-`MIT OR Apache-2.0`  -  [LICENSE-MIT](LICENSE-MIT), [LICENSE-APACHE](LICENSE-APACHE).
+`MIT OR Apache-2.0`: [LICENSE-MIT](LICENSE-MIT), [LICENSE-APACHE](LICENSE-APACHE).
 ```
 
 ### 3.2 README writing rules (lab standard)
@@ -276,8 +275,7 @@ git tag -a v0.1.1 -m "BeaverMath 0.1.1 public candidate"
 
 Execute in order. Stop on any failure.
 
-1. **Re-verify freeze**  
-   - `git rev-parse HEAD` == tag target  
+1. **Re-verify freeze**: `git rev-parse HEAD` == tag target  
    - digests file matches files to attach  
    - path scan on `main` still 0  
    - CI green on that SHA  
@@ -285,8 +283,7 @@ Execute in order. Stop on any failure.
 2. **Push tag** (if not already)  
    `git push origin main && git push origin v0.1.1`
 
-3. **GitHub Release**  
-   - title `BeaverMath 0.1.1`  
+3. **GitHub Release**: title `BeaverMath 0.1.1`  
    - notes from CHANGELOG known limitations  
    - attach: both tar.gz, SBOM, SHA256SUMS  
    - re-download assets; `strings` + `rg` path scan must pass  
@@ -298,12 +295,10 @@ Execute in order. Stop on any failure.
      --accept-visibility-change-consequences
    ```  
 
-5. **README status line**  
-   - switch “private candidate” → “public 0.1.1” in a **follow-up commit** if you prefer freeze purity, **or** include the public status in the freeze commit only if flip is immediate the same hour.  
+5. **README status line**: switch “private candidate” → “public 0.1.1” in a **follow-up commit** if you prefer freeze purity, **or** include the public status in the freeze commit only if flip is immediate the same hour.  
    - Prefer: freeze with private wording → flip → one-line status commit (acceptable; does not rebuild binaries).  
 
-6. **Security Advisories**  
-   - enable GitHub private vulnerability reporting / security advisories  
+6. **Security Advisories**: enable GitHub private vulnerability reporting / security advisories  
    - SECURITY.md points at that channel  
 
 7. **Post-public smoke (clean machine or clean dir)**  
@@ -323,7 +318,7 @@ Execute in order. Stop on any failure.
 
 ## 8. Work breakdown (execution order)
 
-### Wave P0  -  Docs & honesty (1 session)
+### Wave P0: Docs & honesty (1 session)
 
 | # | Task | Done when |
 |---|------|-----------|
@@ -333,7 +328,7 @@ Execute in order. Stop on any failure.
 | P0.4 | PHASE12 + RELEASE_DIGESTS placeholders for 0.1.1 | consistent with this plan |
 | P0.5 | Spot-check adapters/SPIKE for required absolute paths | none required for install |
 
-### Wave P1  -  Code gate (same or next session)
+### Wave P1: Code gate (same or next session)
 
 | # | Task | Done when |
 |---|------|-----------|
@@ -341,7 +336,7 @@ Execute in order. Stop on any failure.
 | P1.2 | Optional unwrap polish | no public CLI panic on doctor/repair print |
 | P1.3 | Confirm CI green on pushed tip | Actions success on freeze parent |
 
-### Wave P2  -  Freeze & assets (private)
+### Wave P2: Freeze & assets (private)
 
 | # | Task | Done when |
 |---|------|-----------|
@@ -351,7 +346,7 @@ Execute in order. Stop on any failure.
 | P2.4 | Tag `v0.1.1` on that commit | tag == HEAD |
 | P2.5 | Full-history path scan on public-bound refs | 0 hits |
 
-### Wave P3  -  Flip (explicit approve)
+### Wave P3: Flip (explicit approve)
 
 | # | Task | Done when |
 |---|------|-----------|
@@ -361,7 +356,7 @@ Execute in order. Stop on any failure.
 | P3.4 | Clean-machine smoke | recorded pass |
 | P3.5 | Status line “public 0.1.1” | README matches reality |
 
-### Wave P4  -  After public (not blockers)
+### Wave P4: After public (not blockers)
 
 - Linux binary via `release-prep`  
 - crates.io decision  
