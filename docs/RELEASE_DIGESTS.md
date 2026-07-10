@@ -5,7 +5,7 @@
 | Artifact | Value |
 |----------|--------|
 | Git tag | `v0.1.0` (moved to clean-history tip after orphan) |
-| Git commit (tag target) | 9a74280ca4506e0d31f4eff165d5e227c3ab5094 |
+| Git commit (tag target) | b4a269f15f06d4a93843ba3f9bafcc16d5e44467 |
 | `Cargo.lock` SHA-256 | `491077fd3424d63c658c0a728df520dcba9c895c96c2ecb014a603868467efe8` |
 | Workspace version | `0.1.0` |
 | Toolchain | `1.91.1` (`rust-toolchain.toml`) |
