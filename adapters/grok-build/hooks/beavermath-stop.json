@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'ROOT=${BEAVERMATH_ROOT:-$(git rev-parse --show-toplevel 2>/dev/null || pwd)}; exec bash \"$ROOT/adapters/grok-build/scripts/grok-stop.sh\"'",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'ROOT=${BEAVERMATH_ROOT:-$(git rev-parse --show-toplevel 2>/dev/null || pwd)}; exec bash \"$ROOT/adapters/grok-build/scripts/grok-stop.sh\"'",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

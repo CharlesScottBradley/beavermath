@@ -1,0 +1,6 @@
+{
+  "schema_version": "1",
+  "input": "The answer is $x^2+y^2=z^2$.",
+  "request_png": false,
+  "request_svg": false
+}

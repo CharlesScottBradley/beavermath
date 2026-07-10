@@ -1,0 +1,42 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/beavermath-core",
+    "crates/beavermath-render",
+    "crates/beavermath-terminal",
+    "crates/beavermath-adapter",
+    "crates/beavermath-cli",
+]
+default-members = ["crates/beavermath-cli"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/CharlesScottBradley/beavermath"
+authors = ["BeaverMath contributors"]
+publish = false
+
+[workspace.dependencies]
+beavermath-core = { path = "crates/beavermath-core", version = "0.1.0" }
+beavermath-render = { path = "crates/beavermath-render", version = "0.1.0" }
+beavermath-terminal = { path = "crates/beavermath-terminal", version = "0.1.0" }
+beavermath-adapter = { path = "crates/beavermath-adapter", version = "0.1.0" }
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0.140"
+sha2 = "0.10.9"
+hex = "0.4.3"
+thiserror = "2.0.12"
+clap = { version = "4.5.40", features = ["derive"] }
+jsonschema = "0.30.0"
+base64 = "0.22.1"
+tempfile = "3.20.0"
+
+# RaTeX stack (pinned; no git deps in release graph)
+ratex-parser = "0.1.13"
+ratex-layout = "0.1.13"
+ratex-svg = { version = "0.1.13", features = ["standalone", "embed-fonts"] }
+ratex-render = { version = "0.1.13", features = ["embed-fonts"] }
+ratex-types = "0.1.13"
+ratex-katex-fonts = "0.1.13"

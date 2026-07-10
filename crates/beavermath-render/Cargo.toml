@@ -1,0 +1,26 @@
+[package]
+name = "beavermath-render"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+publish = false
+description = "Bounded RaTeX adapter, immutable PNG/SVG artifacts, and private cache"
+
+[dependencies]
+beavermath-core = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+hex = { workspace = true }
+thiserror = { workspace = true }
+ratex-parser = { workspace = true }
+ratex-layout = { workspace = true }
+ratex-svg = { workspace = true }
+ratex-render = { workspace = true }
+ratex-types = { workspace = true }
+
+[dev-dependencies]
+tempfile = { workspace = true }

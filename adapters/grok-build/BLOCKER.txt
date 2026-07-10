@@ -1,0 +1,13 @@
+IP1 Grok stock TUI paint BLOCKED (2026-07-10, reconfirmed)
+
+Reason: grok is a closed Mach-O (~/.grok/downloads/grok-macos-aarch64);
+internal paths reference crates/codegen/xai-grok-shell; no paint API; Stop hooks
+are passive (cannot rewrite pager). Mutating chat_history would poison the model.
+
+Shipped unblock interim:
+- beavermath present (IP0)
+- beavermath grok-session: read-only session → beavermath_display/VIEWPORT.md
+- Stop hook calls grok-session after turns
+- PATCH_PROPOSAL.md for xAI / future source access
+
+True product bar (math inside stock grok scrollback) still needs host paint patch.

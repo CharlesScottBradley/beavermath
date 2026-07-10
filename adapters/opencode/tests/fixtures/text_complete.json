@@ -1,0 +1,10 @@
+{
+  "input": {
+    "sessionID": "sess-1",
+    "messageID": "msg-1",
+    "partID": "part-1"
+  },
+  "output": {
+    "text": "Result $a^2=b^2$. URL https://x.com/$user$/ok. Code `$x$`. Real $y$."
+  }
+}

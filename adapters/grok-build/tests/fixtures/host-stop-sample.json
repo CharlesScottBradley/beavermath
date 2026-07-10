@@ -1,0 +1,9 @@
+{
+  "hookEventName": "stop",
+  "sessionId": "spike-session",
+  "cwd": "/workspace/demo",
+  "timestamp": "2026-07-10T00:00:00Z",
+  "assistantMessage": "From the identity we have $x^2+y^2=z^2$. URL https://x.com/$user$/p stays. Code `$x$` stays. Real $y$.",
+  "messageId": "grok-turn-1",
+  "revision": 1
+}

@@ -1,0 +1,20 @@
+[package]
+name = "beavermath-terminal"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+publish = false
+description = "Terminal-safe text policy and direct Kitty/iTerm2 typed frame encoders"
+
+[dependencies]
+beavermath-core = { workspace = true }
+base64 = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+tempfile = { workspace = true }

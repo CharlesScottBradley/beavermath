@@ -1,0 +1,22 @@
+[package]
+name = "beavermath-adapter"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+publish = false
+description = "Neutral lifecycle/event contract for OMP, Codex, Claude Code, and OpenCode"
+
+[dependencies]
+beavermath-core = { workspace = true }
+beavermath-terminal = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+hex = { workspace = true }
+thiserror = { workspace = true }
+
+[dev-dependencies]
+tempfile = { workspace = true }

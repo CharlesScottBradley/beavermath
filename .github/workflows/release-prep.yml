@@ -1,0 +1,46 @@
+# Builds release-style binaries for digest recording (private).
+# Does not publish crates or flip repo visibility.
+name: release-prep
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: macos-latest
+            target: aarch64-apple-darwin
+          - os: macos-13
+            target: x86_64-apple-darwin
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: 1.91.1
+          targets: ${{ matrix.target }}
+      - name: Build release CLI
+        run: cargo build --locked --release -p beavermath-cli --target ${{ matrix.target }}
+      - name: Checksum
+        run: |
+          BIN=target/${{ matrix.target }}/release/beavermath
+          if [ -f "$BIN" ]; then
+            shasum -a 256 "$BIN" | tee beavermath-${{ matrix.target }}.sha256
+          elif [ -f "${BIN}.exe" ]; then
+            shasum -a 256 "${BIN}.exe" | tee beavermath-${{ matrix.target }}.sha256
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: beavermath-${{ matrix.target }}
+          path: |
+            target/${{ matrix.target }}/release/beavermath
+            target/${{ matrix.target }}/release/beavermath.exe
+            beavermath-*.sha256
+          if-no-files-found: warn

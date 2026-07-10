@@ -1,0 +1,29 @@
+[package]
+name = "beavermath-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+publish = false
+description = "BeaverMath CLI: render, filter, doctor, cache, repair"
+default-run = "beavermath"
+
+[[bin]]
+name = "beavermath"
+path = "src/main.rs"
+
+[dependencies]
+beavermath-core = { workspace = true }
+beavermath-render = { workspace = true }
+beavermath-terminal = { workspace = true }
+beavermath-adapter = { workspace = true }
+clap = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+hex = { workspace = true }
+
+[dev-dependencies]
+serde_json = { workspace = true }

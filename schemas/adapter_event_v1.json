@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://beavermath.dev/schemas/adapter_event_v1.json",
+  "title": "AdapterEventV1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "kind",
+    "message_id",
+    "revision",
+    "content_sha256"
+  ],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "message_start",
+        "message_update",
+        "message_end",
+        "turn_end",
+        "branch",
+        "resume",
+        "session_switch",
+        "shutdown",
+        "cancel",
+        "replace",
+        "delete"
+      ]
+    },
+    "message_id": { "type": "string" },
+    "revision": { "type": "integer", "minimum": 0 },
+    "content_sha256": { "type": "string", "minLength": 64, "maxLength": 64 },
+    "artifacts": { "type": "array" },
+    "semantic_preview": { "type": "string" },
+    "exact_source": { "type": "string" },
+    "preview_path": { "type": "string" }
+  },
+  "additionalProperties": true
+}

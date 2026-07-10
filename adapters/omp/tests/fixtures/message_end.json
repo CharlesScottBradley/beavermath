@@ -1,0 +1,13 @@
+{
+  "type": "message_end",
+  "message": {
+    "role": "assistant",
+    "id": "msg-fixture-1",
+    "content": [
+      {
+        "type": "text",
+        "text": "From Maxwell we keep $E=mc^2$. The step is $x^2+y^2=z^2$. URL https://x.com/$user$/p stays. Code `$x$` stays. Real $y$."
+      }
+    ]
+  }
+}

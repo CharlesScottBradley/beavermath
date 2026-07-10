@@ -1,0 +1,17 @@
+{
+  "message_id": "grok-inchat-1",
+  "revision": 1,
+  "source": "The answer is $x^2+y^2=z^2$. URL https://x.com/$user$/p. Code `$x$`. Real $y$.",
+  "expected_source_contains": [
+    "$x^2+y^2=z^2$",
+    "https://x.com/$user$/p",
+    "`$x$`",
+    "$y$"
+  ],
+  "expected_display_rules": {
+    "must_not_equal_source_when_math": true,
+    "must_contain_url_literal": "https://x.com/$user$/p",
+    "must_contain_code_literal": "`$x$`",
+    "display_equals_filter": true
+  }
+}

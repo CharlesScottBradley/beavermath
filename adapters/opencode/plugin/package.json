@@ -1,0 +1,11 @@
+{
+  "name": "beavermath-opencode-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "BeaverMath present on OpenCode text.complete (C1; C2 API-blocked)",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  }
+}
