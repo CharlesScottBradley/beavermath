@@ -30,7 +30,7 @@ hex = "0.4.3"
 thiserror = "2.0.12"
 clap = { version = "4.5.40", features = ["derive"] }
 jsonschema = "0.30.0"
-base64 = "0.22.1"
+base64 = "0.23.0"
 tempfile = "3.20.0"
 
 # RaTeX stack (pinned; no git deps in release graph)
