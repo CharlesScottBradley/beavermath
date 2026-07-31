@@ -732,9 +732,9 @@ dependencies = [
 
 [[package]]
 name = "ratex-katex-fonts"
-version = "0.1.13"
+version = "0.1.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6f62871291478ef51447006b97cbf5543747f4b6a70d0afbc8e11f8f3c4928bd"
+checksum = "c915a17fd71c41374d1ec19651a26ca352e757e1342391c2cbc5b825dacaa64b"
 dependencies = [
  "rust-embed",
 ]
