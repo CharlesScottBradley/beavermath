@@ -51,7 +51,7 @@ jobs:
           elif [ -f "${BIN}.exe" ]; then
             shasum -a 256 "${BIN}.exe" | tee beavermath-${{ matrix.target }}.sha256
           fi
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: beavermath-${{ matrix.target }}
           path: |
